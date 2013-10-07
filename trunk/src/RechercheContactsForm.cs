@@ -401,7 +401,7 @@ namespace MemoireBoy2013
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if ((this.listBoxGRP_1.SelectedIndex != -1) && (this.personneAmodifier != null))
+            if ((this.listBoxGRP_1.SelectedIndex != -1)) 
             {
                 this.listBoxGRP_2.Items.Add(this.listBoxGRP_1.SelectedItem);
                 this.listBoxGRP_1.Items.Remove(this.listBoxGRP_1.SelectedItem);
@@ -414,7 +414,7 @@ namespace MemoireBoy2013
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if ((this.listBoxGRP_2.SelectedIndex != -1) && (this.personneAmodifier != null))
+            if ((this.listBoxGRP_2.SelectedIndex != -1)) 
             {
                 string lib = this.listBoxGRP_2.SelectedItem.ToString();
                 this.listBoxGRP_1.Items.Add(this.listBoxGRP_2.SelectedItem);

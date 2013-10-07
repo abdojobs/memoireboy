@@ -105,6 +105,8 @@
             this.horloge = new System.Windows.Forms.Timer(this.components);
             this.menuItem18 = new System.Windows.Forms.MenuItem();
             this.menuItem17 = new System.Windows.Forms.MenuItem();
+            this.menuItem2 = new System.Windows.Forms.MenuItem();
+            this.menuItem3 = new System.Windows.Forms.MenuItem();
             this.menuItem44 = new System.Windows.Forms.MenuItem();
             this.menuItem33 = new System.Windows.Forms.MenuItem();
             this.menuItem35 = new System.Windows.Forms.MenuItem();
@@ -114,8 +116,6 @@
             this.menuItem48 = new System.Windows.Forms.MenuItem();
             this.mainMenuList = new System.Windows.Forms.MainMenu(this.components);
             this.comboTrie = new System.Windows.Forms.ComboBox();
-            this.menuItem2 = new System.Windows.Forms.MenuItem();
-            this.menuItem3 = new System.Windows.Forms.MenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -812,6 +812,17 @@
             this.menuItem3});
             this.menuItem17.Text = "Base de Données";
             // 
+            // menuItem2
+            // 
+            this.menuItem2.Index = 1;
+            this.menuItem2.Text = "-";
+            // 
+            // menuItem3
+            // 
+            this.menuItem3.Index = 2;
+            this.menuItem3.Text = "Connecter Base de Données";
+            this.menuItem3.Click += new System.EventHandler(this.menuItem3_Click);
+            // 
             // menuItem44
             // 
             this.menuItem44.Index = 1;
@@ -881,17 +892,6 @@
             this.comboTrie.Size = new System.Drawing.Size(550, 24);
             this.comboTrie.TabIndex = 29;
             this.comboTrie.SelectedIndexChanged += new System.EventHandler(this.comboTrie_SelectedIndexChanged);
-            // 
-            // menuItem2
-            // 
-            this.menuItem2.Index = 1;
-            this.menuItem2.Text = "-";
-            // 
-            // menuItem3
-            // 
-            this.menuItem3.Index = 2;
-            this.menuItem3.Text = "Connecter Base de Données";
-            this.menuItem3.Click += new System.EventHandler(this.menuItem3_Click);
             // 
             // openFileDialog1
             // 
