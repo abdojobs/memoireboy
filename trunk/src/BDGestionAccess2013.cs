@@ -406,8 +406,8 @@ namespace MemoireBoy2013
                 while (lecteur.Read())
                 {
                     Taches t = new Taches(lecteur.GetInt32(0), 
-                                         lecteur.GetString(1), 
-                                         lecteur.GetString(2), 
+                                         lecteur.GetString(1).Replace("''","'"),
+                                         lecteur.GetString(2).Replace("''", "'"), 
                                          lecteur.GetString(3),
                                          lecteur.GetString(4), 
                                          lecteur.GetString(5), 
@@ -449,7 +449,7 @@ namespace MemoireBoy2013
                 while (lecteur.Read())
                 {
                     string t = lecteur.GetString(0);
-                    Lst.Add(t);
+                    Lst.Add(t.Replace("''", "'"));
                 }
 
                 lecteur.Close();
@@ -1062,11 +1062,15 @@ namespace MemoireBoy2013
 
 
 
-            return txt;
+            return txt.Replace("''", "'");
 
         }
 
-
+        /// <summary>
+        /// creation dans le journal d'un jour
+        /// </summary>
+        /// <param name="jour">le texte du jour</param>
+        /// <param name="date">la date à laquelle créer le texte</param>
         public static void CREA_JOUR_DS_JOURNAL(string jour, string date)
         {
             try
@@ -1075,7 +1079,7 @@ namespace MemoireBoy2013
                 // -------------  creation d'une tache avec ID
 
 
-                string ins = "Insert into journal (textj,datej) values ('" + jour + "','"+date+"')";
+                string ins = "Insert into journal (textj,datej) values ('" + jour.Replace("'","''") + "','"+date+"')";
 
                 OleDbCommand cmdacc = new OleDbCommand(ins, BDGestionAccess2013.connexion_access);
 

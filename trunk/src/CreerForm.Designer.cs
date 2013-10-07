@@ -68,7 +68,7 @@
             this.InfoLabCrea.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.InfoLabCrea.Size = new System.Drawing.Size(388, 30);
             this.InfoLabCrea.TabIndex = 29;
-            this.InfoLabCrea.Text = "MemoireBoy";
+            this.InfoLabCrea.Text = "Tapez un titre pour votre tache";
             this.InfoLabCrea.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // button3
