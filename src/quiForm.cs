@@ -20,7 +20,7 @@ namespace MemoireBoy2013
 
         private void quiForm_Load(object sender, EventArgs e)
         {
-            this.label1.Text = "Stéphane Varloteaux\r\n\r\ncontact@memoireboy.fr\r\n\r\nVersion Beta";
+            this.label1.Text = "Stéphane Varloteaux\r\n\r\nJean-Christophe Bérard\r\n\r\ncontact@memoireboy.fr\r\n\r\nVersion Beta";
 
         }
 

@@ -262,7 +262,7 @@ namespace MemoireBoy2013
         {
             bool ok = BDGestionAccess2013.TABLE_EXIST("journal");
 
-            if (!ok) // je crée la table journal V2013 1.0.0
+            if (!ok) // je crée la table journal V2013 BETA VERSION
             {
                 BDGestionAccess2013.CREATE_TABLE("CREATE TABLE journal ([idj] AUTOINCREMENT NOT NULL PRIMARY KEY , [textj] MEMO NULL, [datej] VARCHAR(20))");
             }
@@ -729,7 +729,7 @@ namespace MemoireBoy2013
         {
             if (this.JOURNAL_box.Text != "")
             {
-                string txt = this.JOURNAL_box.Text.Replace("'", "''");
+                string txt = this.JOURNAL_box.Text;
                 txt = Encrypt.EncryptString(txt);
                 BDGestionAccess2013.CREA_JOUR_DS_JOURNAL(txt, this.DateCourante.ToShortDateString());
                 this.MiseAJourDuJournal();
