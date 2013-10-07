@@ -18,6 +18,7 @@ namespace MemoireBoy2013
         private static string chaine_connexion = "";
         private static string baseDeDonnees = "";
         private static string dataSourcePath = "";
+        public static string TotalPathForBase = "";
 
         // Objets de connexion à la base de données
         public static OleDbConnection connexion_access = null;
@@ -29,12 +30,28 @@ namespace MemoireBoy2013
 
         public static bool OUVRIRconnexionBD(string basename)
         {
-            chaine_connexion = @"Provider=Microsoft.Jet.OLEDB.4.0;"
-                + @"Data Source=.\bd\" + basename + ".mdb";
+            string chemin = "";
+            bool changePath = false;
 
-            // assure la connectivité avec Access
-            int pos = chaine_connexion.IndexOf(@".\");
-            string chemin = chaine_connexion.Substring(pos);
+            if (TotalPathForBase == "")
+            {
+                chaine_connexion = @"Provider=Microsoft.Jet.OLEDB.4.0;"
+                    + @"Data Source=.\bd\" + basename + ".mdb";
+                // assure la connectivité avec Access
+
+                int pos = chaine_connexion.IndexOf(@".\");
+                chemin = chaine_connexion.Substring(pos);
+
+                //return false; // pour tester et gérer l'absence de connexion
+            }
+            else
+            {
+                chaine_connexion = @"Provider=Microsoft.Jet.OLEDB.4.0;"
+                            + @"Data Source="+TotalPathForBase;
+                chemin = TotalPathForBase;
+                changePath = true;
+            }
+            
 
             try
             {
@@ -43,10 +60,16 @@ namespace MemoireBoy2013
 
                 if (lefichier.Exists == true)
                 {
+                    if (changePath) 
+                    { 
+                        System.IO.File.Copy(TotalPathForBase, @".\bd\memoireboy2013.mdb");
+
+                        chaine_connexion = @"Provider=Microsoft.Jet.OLEDB.4.0;"+ @"Data Source=.\bd\memoireboy2013.mdb";
+                        Application.Restart();
+                     
+                    }
                     connexion_access = new OleDbConnection(chaine_connexion);
                     connexion_access.Open();
-
-                 //   BD_courante = lefichier.FullName;
 
                     return true;
                 }
@@ -55,8 +78,9 @@ namespace MemoireBoy2013
                     return false;
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 return false;
             }
 
@@ -67,12 +91,25 @@ namespace MemoireBoy2013
         public static bool FERMERconnexionBD(string basename)
         {
             bool bol = false;
-            chaine_connexion = @"Provider=Microsoft.Jet.OLEDB.4.0;"
-                + @"Data Source=.\bd\" + basename + ".mdb";
+            string chemin = "";
 
-            // assure la connectivité avec Access
-            int pos = chaine_connexion.IndexOf(@".\");
-            string chemin = chaine_connexion.Substring(pos);
+            if (TotalPathForBase == "")
+            {
+                chaine_connexion = @"Provider=Microsoft.Jet.OLEDB.4.0;"
+                    + @"Data Source=.\bd\" + basename + ".mdb";
+                // assure la connectivité avec Access
+
+                int pos = chaine_connexion.IndexOf(@".\");
+                chemin = chaine_connexion.Substring(pos);
+
+                return false; // pour tester et gérer l'absence de connexion
+            }
+            else
+            {
+                chaine_connexion = @"Provider=Microsoft.Jet.OLEDB.4.0;"
+                            + @"Data Source=" + TotalPathForBase;
+                chemin = TotalPathForBase;
+            }
 
             try
             {

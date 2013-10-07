@@ -114,6 +114,9 @@
             this.menuItem48 = new System.Windows.Forms.MenuItem();
             this.mainMenuList = new System.Windows.Forms.MainMenu(this.components);
             this.comboTrie = new System.Windows.Forms.ComboBox();
+            this.menuItem2 = new System.Windows.Forms.MenuItem();
+            this.menuItem3 = new System.Windows.Forms.MenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.datesgroupBox.SuspendLayout();
@@ -804,7 +807,9 @@
             // 
             this.menuItem17.Index = 1;
             this.menuItem17.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuItem18});
+            this.menuItem18,
+            this.menuItem2,
+            this.menuItem3});
             this.menuItem17.Text = "Base de Données";
             // 
             // menuItem44
@@ -876,6 +881,21 @@
             this.comboTrie.Size = new System.Drawing.Size(550, 24);
             this.comboTrie.TabIndex = 29;
             this.comboTrie.SelectedIndexChanged += new System.EventHandler(this.comboTrie_SelectedIndexChanged);
+            // 
+            // menuItem2
+            // 
+            this.menuItem2.Index = 1;
+            this.menuItem2.Text = "-";
+            // 
+            // menuItem3
+            // 
+            this.menuItem3.Index = 2;
+            this.menuItem3.Text = "Connecter Base de Données";
+            this.menuItem3.Click += new System.EventHandler(this.menuItem3_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // MBoyMain
             // 
@@ -1009,6 +1029,9 @@
         private System.Windows.Forms.Button JourModifier;
         private System.Windows.Forms.Button JourCreer;
         private System.Windows.Forms.TextBox JOURNAL_box;
+        private System.Windows.Forms.MenuItem menuItem2;
+        private System.Windows.Forms.MenuItem menuItem3;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
 
     }
 }

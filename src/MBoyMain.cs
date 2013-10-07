@@ -28,10 +28,10 @@ namespace MemoireBoy2013
             InitializeComponent();
         }
 
-        private void EtablirConnexion()
+        private bool EtablirConnexion()
         {
             bool bol = BDGestionAccess2013.OUVRIRconnexionBD("memoireboy2013");
-
+            return bol;
         }
 
 
@@ -239,18 +239,27 @@ namespace MemoireBoy2013
             }
         }
 
+
+        private bool CONNEXIONisOK = false;
         private void MBoyMain_Load(object sender, EventArgs e)
         {
 
             this.ChargementDesImages();
-            this.MBoyMain_Init();
 
-            this.EtablirConnexion();
+            this.CONNEXIONisOK = this.EtablirConnexion();
 
-            this.VerifierBaseJournal2013();
-            this.JOURNAL_box.Enabled = false;
+            if (this.CONNEXIONisOK)
+            {
+                this.MBoyMain_Init();
+                this.VerifierBaseJournal2013();
+                this.JOURNAL_box.Enabled = false;
 
-            this.MiseAJour();
+                this.MiseAJour();
+            }
+            else
+            {
+                this.detailminibox.Text = "MemoireBoy a détecté un problème de connexion à la base de données\r\naller dans le menu [base de données] onglet : [connecter base]\r\nrecherchez memoireboy.mdb";
+            }
 
 
 
@@ -470,7 +479,7 @@ namespace MemoireBoy2013
 
         private void button3_Click(object sender, EventArgs e)
         {
-            this.MiseAJour();
+            if (this.CONNEXIONisOK) { this.MiseAJour(); }
         }
 
         private void button3_MouseHover(object sender, EventArgs e)
@@ -485,7 +494,7 @@ namespace MemoireBoy2013
 
         private void MBoyMain_Shown(object sender, EventArgs e)
         {
-            this.MiseAJour();
+            if (this.CONNEXIONisOK) { this.MiseAJour(); }
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -522,7 +531,7 @@ namespace MemoireBoy2013
 
         private void MBoyMain_Activated(object sender, EventArgs e)
         {
-            this.MiseAJour();
+            if (this.CONNEXIONisOK) { this.MiseAJour(); }
         }
 
         private void toolStripButton3_MouseHover(object sender, EventArgs e)
@@ -810,6 +819,17 @@ namespace MemoireBoy2013
         private void tabPage1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void menuItem3_Click(object sender, EventArgs e)
+        {
+            DialogResult result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK) 
+            {
+                string file = openFileDialog1.FileName;
+                BDGestionAccess2013.TotalPathForBase = file;
+                BDGestionAccess2013.OUVRIRconnexionBD("memoireboy2013.mdb");
+            }
         }
 
 
