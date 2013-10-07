@@ -458,6 +458,26 @@ namespace MemoireBoy2013
             this.InfoLab.Text = "";
         }
 
+        private void cvButt_Click(object sender, EventArgs e)
+        {
+            if (System.IO.File.Exists(this.textBoxCV.Text))
+            {
+  /*              System.Diagnostics.ProcessStartInfo myInfo = new System.Diagnostics.ProcessStartInfo();
+                myInfo.FileName = "MonAppli.exe";
+                myInfo.WorkingDirectory = "MonRepertoire";
+                System.Diagnostics.Process.Start(myInfo); */
+                try
+                {
+                    System.Diagnostics.Process.Start(this.textBoxCV.Text);
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
 
     }
 }
