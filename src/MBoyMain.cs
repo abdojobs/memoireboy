@@ -696,7 +696,7 @@ namespace MemoireBoy2013
 
         private void toolStripButton10_MouseHover(object sender, EventArgs e)
         {
-
+            this.detailminibox.Text = "\r\nCrypter/Décrypter le journal";
         }
 
         private void toolStripButton1_MouseLeave(object sender, EventArgs e)
@@ -823,10 +823,15 @@ namespace MemoireBoy2013
 
         private void menuItem3_Click(object sender, EventArgs e)
         {
+            openFileDialog1.Filter = "access Files (.mdb)|*.mdb";
+            openFileDialog1.FilterIndex = 1;
+            openFileDialog1.FileName = "";
+
             DialogResult result = openFileDialog1.ShowDialog();
             if (result == DialogResult.OK) 
             {
                 string file = openFileDialog1.FileName;
+
                 BDGestionAccess2013.TotalPathForBase = file;
                 BDGestionAccess2013.OUVRIRconnexionBD("memoireboy2013.mdb");
             }

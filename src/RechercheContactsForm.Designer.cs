@@ -91,6 +91,7 @@
             this.CreerButt = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.supprButt = new System.Windows.Forms.Button();
+            this.cvButt = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -443,6 +444,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.cvButt);
             this.tabPage4.Controls.Add(this.button1);
             this.tabPage4.Controls.Add(this.buttonImage);
             this.tabPage4.Controls.Add(this.dateTimePicker1);
@@ -466,11 +468,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(349, 178);
+            this.button1.Location = new System.Drawing.Point(349, 174);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(128, 23);
+            this.button1.Size = new System.Drawing.Size(82, 23);
             this.button1.TabIndex = 196;
-            this.button1.Text = "recherche cv doc";
+            this.button1.Text = "associer cv";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -788,6 +790,16 @@
             this.supprButt.Text = "Supprimer";
             this.supprButt.Click += new System.EventHandler(this.supprButt_Click);
             // 
+            // cvButt
+            // 
+            this.cvButt.Location = new System.Drawing.Point(437, 174);
+            this.cvButt.Name = "cvButt";
+            this.cvButt.Size = new System.Drawing.Size(40, 23);
+            this.cvButt.TabIndex = 200;
+            this.cvButt.Text = "cv";
+            this.cvButt.UseVisualStyleBackColor = true;
+            this.cvButt.Click += new System.EventHandler(this.cvButt_Click);
+            // 
             // RechercheContactsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -888,5 +900,6 @@
         private System.Windows.Forms.ComboBox comboGRP;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.ComboBox comboBoxSupprGRP;
+        private System.Windows.Forms.Button cvButt;
     }
 }
