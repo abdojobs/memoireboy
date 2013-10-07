@@ -44,7 +44,7 @@ namespace MemoireBoy2013
         {
             if ((this.UserBox.Text != "") && (this.MdpBox.Text != ""))
             {
-                bool bol = BDGestionAccess2013.OUVRIRconnexionBD("memoireboy2013");
+                bool bol = BDGestionAccess2013.OUVRIRconnexionBD();
                 Users us = BDGestionAccess2013.REQUETEUR_USERS(this.UserBox.Text, this.MdpBox.Text);
 
                 if (us != null)

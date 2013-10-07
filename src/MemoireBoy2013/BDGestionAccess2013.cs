@@ -7,6 +7,7 @@ using System.Data;
 using System.IO;
 using System.Windows.Forms;
 using System.Security.Cryptography;
+using System.Configuration;
 
 namespace MemoireBoy2013
 {
@@ -15,9 +16,11 @@ namespace MemoireBoy2013
 
         #region "Champs"
 
-        private static string chaine_connexion = "";
-        private static string baseDeDonnees = "";
-        private static string dataSourcePath = "";
+        private const string connectionStringName = "MemoireBoyConnectionString";
+
+        private static string chaine_connexion = string.Empty;
+        private static string baseDeDonnees = string.Empty;
+        private static string dataSourcePath = string.Empty;
 
         // Objets de connexion à la base de données
         public static OleDbConnection connexion_access = null;
@@ -27,33 +30,14 @@ namespace MemoireBoy2013
 
         #endregion
 
-        public static bool OUVRIRconnexionBD(string basename)
+        public static bool OUVRIRconnexionBD()
         {
-            chaine_connexion = @"Provider=Microsoft.Jet.OLEDB.4.0;"
-                + @"Data Source=.\bd\" + basename + ".mdb";
-
-            // assure la connectivité avec Access
-            int pos = chaine_connexion.IndexOf(@".\");
-            string chemin = chaine_connexion.Substring(pos);
-
+            chaine_connexion = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
             try
             {
-
-                FileInfo lefichier = new FileInfo(chemin);
-
-                if (lefichier.Exists == true)
-                {
                     connexion_access = new OleDbConnection(chaine_connexion);
                     connexion_access.Open();
-
-                 //   BD_courante = lefichier.FullName;
-
                     return true;
-                }
-                else
-                {
-                    return false;
-                }
             }
             catch
             {
@@ -64,36 +48,17 @@ namespace MemoireBoy2013
         }
 
 
-        public static bool FERMERconnexionBD(string basename)
+        public static bool FERMERconnexionBD()
         {
-            bool bol = false;
-            chaine_connexion = @"Provider=Microsoft.Jet.OLEDB.4.0;"
-                + @"Data Source=.\bd\" + basename + ".mdb";
-
-            // assure la connectivité avec Access
-            int pos = chaine_connexion.IndexOf(@".\");
-            string chemin = chaine_connexion.Substring(pos);
-
             try
             {
-
-                FileInfo lefichier = new FileInfo(chemin);
-
-                if (lefichier.Exists == true)
-                {
-                    connexion_access = new OleDbConnection(chaine_connexion);
                     connexion_access.Close();
-                    bol = true;
-                }
-
+                    return true;
             }
             catch
             {
                 return false;
             }
-
-            return bol;
-
         }
 
         public static bool GRPPERS_EXIST(int grpid, int persid)
@@ -108,7 +73,7 @@ namespace MemoireBoy2013
 
                 string req = "select count(*) from grppers where grpid = "+grpid+" and persid = "+persid;
 
-                OleDbCommand cmdacc = new OleDbCommand(req, BDGestionAccess2013.connexion_access);
+                OleDbCommand cmdacc = new OleDbCommand(req, connexion_access);
 
                 int res = (int)cmdacc.ExecuteScalar();
 
@@ -139,7 +104,7 @@ namespace MemoireBoy2013
                 {
                     string ins = "Insert into grppers (grpid,persid) values (" + grpid + "," + persid + ")";
 
-                    OleDbCommand cmdacc = new OleDbCommand(ins, BDGestionAccess2013.connexion_access);
+                    OleDbCommand cmdacc = new OleDbCommand(ins, connexion_access);
 
                     int res = cmdacc.ExecuteNonQuery();
                 }
@@ -162,7 +127,7 @@ namespace MemoireBoy2013
 
                     string ins = "delete from grppers where grpid = "+grpid+ " and persid = "+persid;
 
-                    OleDbCommand cmdacc = new OleDbCommand(ins, BDGestionAccess2013.connexion_access);
+                    OleDbCommand cmdacc = new OleDbCommand(ins, connexion_access);
 
                     int res = cmdacc.ExecuteNonQuery();
  
@@ -185,7 +150,7 @@ namespace MemoireBoy2013
 
                 string del = "delete from groupes where idgrp = " + grpid;
 
-                OleDbCommand cmdacc = new OleDbCommand(del, BDGestionAccess2013.connexion_access);
+                OleDbCommand cmdacc = new OleDbCommand(del, connexion_access);
 
                 int res = cmdacc.ExecuteNonQuery();
 
@@ -208,7 +173,7 @@ namespace MemoireBoy2013
             try
             {
 
-                OleDbCommand cmdaccess = new OleDbCommand(requete, BDGestionAccess2013.connexion_access);
+                OleDbCommand cmdaccess = new OleDbCommand(requete, connexion_access);
                 OleDbDataReader lecteur = cmdaccess.ExecuteReader();
 
 
@@ -240,7 +205,7 @@ namespace MemoireBoy2013
             try
             {
 
-                OleDbCommand cmdaccess = new OleDbCommand(requete, BDGestionAccess2013.connexion_access);
+                OleDbCommand cmdaccess = new OleDbCommand(requete, connexion_access);
                 OleDbDataReader lecteur = cmdaccess.ExecuteReader();
 
 
@@ -271,7 +236,7 @@ namespace MemoireBoy2013
             try
             {
 
-                OleDbCommand cmdaccess = new OleDbCommand(requete, BDGestionAccess2013.connexion_access);
+                OleDbCommand cmdaccess = new OleDbCommand(requete, connexion_access);
                 OleDbDataReader lecteur = cmdaccess.ExecuteReader();
 
 
@@ -301,7 +266,7 @@ namespace MemoireBoy2013
             try
             {
 
-                OleDbCommand cmdaccess = new OleDbCommand(requete, BDGestionAccess2013.connexion_access);
+                OleDbCommand cmdaccess = new OleDbCommand(requete, connexion_access);
                 OleDbDataReader lecteur = cmdaccess.ExecuteReader();
 
 
@@ -351,7 +316,7 @@ namespace MemoireBoy2013
             try
             {
 
-                OleDbCommand cmdaccess = new OleDbCommand(requete, BDGestionAccess2013.connexion_access);
+                OleDbCommand cmdaccess = new OleDbCommand(requete, connexion_access);
                 OleDbDataReader lecteur = cmdaccess.ExecuteReader();
 
 
@@ -399,7 +364,7 @@ namespace MemoireBoy2013
             try
             {
 
-                OleDbCommand cmdaccess = new OleDbCommand(requete, BDGestionAccess2013.connexion_access);
+                OleDbCommand cmdaccess = new OleDbCommand(requete, connexion_access);
                 OleDbDataReader lecteur = cmdaccess.ExecuteReader();
 
 
@@ -442,7 +407,7 @@ namespace MemoireBoy2013
             try
             {
 
-                OleDbCommand cmdaccess = new OleDbCommand(requete, BDGestionAccess2013.connexion_access);
+                OleDbCommand cmdaccess = new OleDbCommand(requete, connexion_access);
                 OleDbDataReader lecteur = cmdaccess.ExecuteReader();
 
 
@@ -474,7 +439,7 @@ namespace MemoireBoy2013
             try
             {
 
-                OleDbCommand cmdaccess = new OleDbCommand(requeteCount, BDGestionAccess2013.connexion_access);
+                OleDbCommand cmdaccess = new OleDbCommand(requeteCount, connexion_access);
                 cpt = (int)cmdaccess.ExecuteScalar();
 
             }
@@ -499,7 +464,7 @@ namespace MemoireBoy2013
 
                 string rqt = "Update taches set datdebt = '" + autredate + "' where idt = " + tach.TacheID;
 
-                OleDbCommand cmdacc = new OleDbCommand(rqt, BDGestionAccess2013.connexion_access);
+                OleDbCommand cmdacc = new OleDbCommand(rqt, connexion_access);
 
                 int res = cmdacc.ExecuteNonQuery();
 
@@ -524,7 +489,7 @@ namespace MemoireBoy2013
 
                 string rqt = "Update taches set datdebt = '" + lendemain + "' where idt = " + tach.TacheID;
 
-                OleDbCommand cmdacc = new OleDbCommand(rqt, BDGestionAccess2013.connexion_access);
+                OleDbCommand cmdacc = new OleDbCommand(rqt, connexion_access);
 
                 int res = cmdacc.ExecuteNonQuery();
 
@@ -550,7 +515,7 @@ namespace MemoireBoy2013
 
                 string rqt = "Update taches set datdebt = '" + lendemain + "' where idt = " + tach.TacheID;
 
-                OleDbCommand cmdacc = new OleDbCommand(rqt, BDGestionAccess2013.connexion_access);
+                OleDbCommand cmdacc = new OleDbCommand(rqt, connexion_access);
 
                 int res = cmdacc.ExecuteNonQuery();
 
@@ -574,7 +539,7 @@ namespace MemoireBoy2013
 
                 string ins = "Update taches set titret='" + tach.Titre.Replace("'", "''") + "',descript='" + tach.Description.Replace("'", "''") + "',datdebt='" + tach.Datdeb + "',datfint='" + tach.Datfin + "',heuredebt='" + tach.Heuredeb + "',heurefint='" + tach.Heurefin + "',destinatt=" + tach.DestinatId + ",archive=" + tach.Archive + " where idt=" + tach.TacheID;
 
-                OleDbCommand cmdacc = new OleDbCommand(ins, BDGestionAccess2013.connexion_access);
+                OleDbCommand cmdacc = new OleDbCommand(ins, connexion_access);
 
                 int res = cmdacc.ExecuteNonQuery();
 
@@ -598,7 +563,7 @@ namespace MemoireBoy2013
 
                 string ins = "Update taches set archive=false where idt=" + tach.TacheID;
 
-                OleDbCommand cmdacc = new OleDbCommand(ins, BDGestionAccess2013.connexion_access);
+                OleDbCommand cmdacc = new OleDbCommand(ins, connexion_access);
 
                 int res = cmdacc.ExecuteNonQuery();
 
