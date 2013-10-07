@@ -30,7 +30,7 @@ namespace MemoireBoy2013
 
         private void EtablirConnexion()
         {
-            bool bol = BDGestionAccess2013.OUVRIRconnexionBD("memoireboy2013");
+            bool bol = BDGestionAccess2013.OUVRIRconnexionBD();
 
         }
 
@@ -343,7 +343,7 @@ namespace MemoireBoy2013
 
         private void MBoyMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            bool lob = BDGestionAccess2013.FERMERconnexionBD("memoireboy2013");
+            bool lob = BDGestionAccess2013.FERMERconnexionBD();
             Application.Exit();
         }
 

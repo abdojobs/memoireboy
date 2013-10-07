@@ -21,9 +21,9 @@ namespace MemoireBoy2013
             MBoyForm mbf_log;
             MBoyMain mbm;
 
-            bool bol = BDGestionAccess2013.OUVRIRconnexionBD("memoireboy2013");
+            bool bol = BDGestionAccess2013.OUVRIRconnexionBD();
             int o = BDGestionAccess2013.COUNT("users", "select count(*) from users");
-            bool lob = BDGestionAccess2013.FERMERconnexionBD("memoireboy2013");
+            bool lob = BDGestionAccess2013.FERMERconnexionBD();
 
             if (o > 0)
             {
