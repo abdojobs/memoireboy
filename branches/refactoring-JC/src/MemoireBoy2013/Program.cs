@@ -22,7 +22,7 @@ namespace MemoireBoy2013
             MBoyMain mbm;
 
             bool bol = BDGestionAccess2013.OUVRIRconnexionBD();
-            int o = BDGestionAccess2013.COUNT("users", "select count(*) from users");
+            int o = BDGestionAccess2013.UserCount();
             bool lob = BDGestionAccess2013.FERMERconnexionBD();
 
             if (o > 0)

@@ -64,7 +64,7 @@ namespace MemoireBoy2013
                 if (this.ModeModif)
                 {
 
-                    int o = BDGestionAccess2013.COUNT("users", "select count(*) from users");
+                    int o = BDGestionAccess2013.UserCount();
 
 
                     this.dateTimePicker1.Value = DateTime.Parse(this.TacheCouranteAmodifier.Datdeb);
