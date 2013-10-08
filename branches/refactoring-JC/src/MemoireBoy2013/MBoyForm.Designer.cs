@@ -99,7 +99,6 @@
             this.Name = "MBoyForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.MBoyForm_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MBoyForm_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

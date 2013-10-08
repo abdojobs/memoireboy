@@ -23,11 +23,11 @@ namespace MemoireBoy2013
             {
                 string app = Application.StartupPath;
                 app = app + @"\images\MBoy.ico";
-                this.Icon = new Icon(app);
-                this.Text = "MEMOIREBOY";
+                Icon = new Icon(app);
+                Text = "MEMOIREBOY";
                 Image localimg = System.Drawing.Image.FromFile(Application.StartupPath + @"/images/" + "imgapp.bmp");
-                this.BackgroundImage = localimg;
-                this.ClientSize = new System.Drawing.Size(320, 320);
+                BackgroundImage = localimg;
+                ClientSize = new System.Drawing.Size(320, 320);
             }
             catch (Exception ex)
             {
@@ -42,15 +42,28 @@ namespace MemoireBoy2013
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if ((this.UserBox.Text != "") && (this.MdpBox.Text != ""))
+            LoginTry();
+        }
+
+        private void MdpBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
             {
-                bool bol = BDGestionAccess2013.OUVRIRconnexionBD();
-                Users us = BDGestionAccess2013.REQUETEUR_USERS(this.UserBox.Text, this.MdpBox.Text);
+                LoginTry();
+            }
+        }
+
+        private void LoginTry()
+        {
+            if (!string.IsNullOrEmpty(UserBox.Text) && !string.IsNullOrEmpty(MdpBox.Text))
+            {
+                BDGestionAccess2013.OUVRIRconnexionBD();
+                Users us = BDGestionAccess2013.REQUETEUR_USERS(UserBox.Text, MdpBox.Text);
 
                 if (us != null)
                 {
                     MBoyMain mb = new MBoyMain(us);
-                    this.Hide();
+                    Hide();
                     mb.Show();
                 }
                 else
@@ -59,20 +72,7 @@ namespace MemoireBoy2013
                 }
 
             }
-            
         }
-
-        private void MBoyForm_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void MdpBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-                this.button1_Click(sender, e);
-            }
-        }
+    
     }
 }
