@@ -431,7 +431,7 @@ namespace MemoireBoy2013
         }
 
 
-        public static int COUNT(string table, string requeteCount)
+        public static int UserCount()
         {
 
             int cpt = -1;
@@ -439,7 +439,7 @@ namespace MemoireBoy2013
             try
             {
 
-                OleDbCommand cmdaccess = new OleDbCommand(requeteCount, connexion_access);
+                OleDbCommand cmdaccess = new OleDbCommand("select count(*) from users", connexion_access);
                 cpt = (int)cmdaccess.ExecuteScalar();
 
             }

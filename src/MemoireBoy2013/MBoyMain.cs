@@ -622,7 +622,7 @@ namespace MemoireBoy2013
             }
             else
             {
-                int o = BDGestionAccess2013.COUNT("users", "select count(*) from users");
+                int o = BDGestionAccess2013.UserCount();
                 if (o ==0)
                 {
                     UersForm usersF = new UersForm(this);
