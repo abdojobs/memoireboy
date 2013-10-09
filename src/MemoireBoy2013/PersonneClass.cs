@@ -8,12 +8,13 @@ namespace MemoireBoy2013
 {
     public class PersonneClass
     {
-        private int _idPers;
 
-        internal int idPers {
-            get { return _idPers; }
-            set { _idPers = value; }
-        }
+        // TODO : voir si les méthodes de formatage (tel,...) ne suffiraient pas en getter seulement
+        // NOTE : à terme, séparer les méthode de formatage dans une classe spécialisée
+
+        #region Champs et Propriétés
+
+        internal int idPers {get; set; }
         internal string civilite { get; set; }
         internal string prenom { get; set; }
         internal string nom { get; set; }
@@ -23,7 +24,7 @@ namespace MemoireBoy2013
         internal string e_mail
         {
             get { return Email; }
-            set { if (FormaterEmail(value)) { Email = value; } }
+            set { if (IsValidEmail(value)) { Email = value; } }
         }
 
         private string _telfixe;
@@ -33,7 +34,6 @@ namespace MemoireBoy2013
         }
 
         internal string telportable { get; set; }
-
         internal string fax { get; set; }
         internal string adresse { get; set; }
         internal string cp { get; set; }
@@ -47,6 +47,10 @@ namespace MemoireBoy2013
 
         public string AffichagePersonne { get { return miseEnFormeAffichage(); } }
         public string AffichageTxt { get { return miseEnFormeAffichagePourTxt(); } }
+
+        #endregion
+
+        #region Constructeurs
 
         public PersonneClass() { }
 
@@ -70,111 +74,118 @@ namespace MemoireBoy2013
                        string cactiv
                     )
 		{
-			this.idPers = cidPers;
-            this.civilite = cciv;
-            this.prenom = FormaterPn(cpn);
-            this.nom = FormaterNom(cnom);
-			this.dateNaissance = cdatenaiss;
-            this.e_mail = email;
-            this.telfixe = FormaterTel(ctelfixe);
-            this.telportable = FormaterTel(ctelmobile);
-			this.fax=cfax;
-            this.adresse = cadr;
-            this.cp = ccp;
-			this.ville = FormaterNom(cville);
-            this.bp = cbp;
-            this.adrImage = pathImage;
-			this.note=cnote;
-            this.adrDocCV = cadrCV;
-            this.site = csite;
-            this.activite = cactiv;
+			idPers = cidPers;
+            civilite = cciv;
+            prenom = FormaterPn(cpn);
+            nom = FormaterNom(cnom);
+			dateNaissance = cdatenaiss;
+            e_mail = email;
+            telfixe = FormaterTel(ctelfixe);
+            telportable = FormaterTel(ctelmobile);
+			fax = cfax;
+            adresse = cadr;
+            cp = ccp;
+			ville = FormaterNom(cville);
+            bp = cbp;
+            adrImage = pathImage;
+			note=cnote;
+            adrDocCV = cadrCV;
+            site = csite;
+            activite = cactiv;
 		}
 
-                private string miseEnFormeAffichage()
+        #endregion
+
+        private string miseEnFormeAffichage()
+        {
+            string format_fix = string.Empty;
+            string format_mob = string.Empty;
+            // NOTE : civ initialisée avec un caractère espace ?
+            string civ = " ";
+            string pren = string.Empty;
+
+            if ( !string.IsNullOrEmpty(telfixe))
+            { 
+                format_fix = string.Format("[{0}] ", telfixe); 
+            }
+            if (!string.IsNullOrEmpty(telportable)) 
+            { 
+                format_mob = string.Format(" [{0}] ", telportable); 
+            }
+            if (!string.IsNullOrEmpty(civilite)) 
+            {
+                civ = string.Format("  ({0})  ", civilite);
+            }
+            if (!string.IsNullOrEmpty(prenom)) 
+            { 
+                pren = " "; 
+            }
+
+            return string.Concat(prenom, pren, nom, civ, format_fix, format_mob, e_mail);
+        }
+
+        private string miseEnFormeAffichagePourTxt()
+        {
+            return string.Format("({0}),{1},{2},{3},{4},{5}", civilite, prenom, nom, telfixe, telportable, e_mail);
+        }
+
+        public static string FormaterNom(string nom)
+        {
+            return nom.ToUpper();
+        }
+
+        public static string FormaterPn(string pn)
+        {
+            return pn.ToLower();
+        }
+
+        public static string FormaterTel(string telNumber)
+        {
+            char[] tel = telNumber.ToCharArray();
+            char[] chiffre = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            string num = string.Empty;
+
+            foreach (char i in tel)
+            {
+                if (chiffre.Contains(i))
                 {
-                    string affiche = "";
-                    string format_fix = "";
-                    string format_mob = "";
-                    string civ = " ";
-                    string pren = "";
-
-                    if (telfixe != "") { format_fix = "[" + telfixe + "] "; }
-                    if (telportable != "") { format_mob = " [" + telportable + "] "; }
-                    if (civilite != "") { civ = "  (" + civilite + ")  "; }
-                    if (prenom != "") { pren = " "; }
-
-                    affiche = prenom + pren + nom + civ + format_fix + format_mob + e_mail;
-
-                    return affiche;
+                    string.Concat(num, i);
                 }
+            }
+            //for (int i = 0; i < tel.Length; i++)
+            //{
+            //    for (int j = 0; j < chiffre.Length; j++)
+            //    {
+            //        if (tel[i] == chiffre[j])
+            //        {
+            //            num += tel[i].ToString(); 
+            //            break;
+            //        }
+            //    }
+            //}
 
-                private string miseEnFormeAffichagePourTxt()
-                {
-                    string affiche = "";
+            if (num.Length == 9) 
+            { 
+                num = num.Insert(0, "0");
+            }
 
-                    affiche = "(" + civilite + ")," + prenom + "," + nom + "," + telfixe + "," + telportable +"," + e_mail;
+            return (num.Length == 10) ? num : string.Empty;
+            //char[] cptChiffres = num.ToCharArray();
+            //string NewNum = string.Empty;
+            //if (cptChiffres.Length == 10)
+            //{
+            //    for (int p = 0; p < cptChiffres.Length; p++)
+            //    {
+            //        // if (p == 2 || p == 4 || p == 6 || p == 8) { NewNum += "."; }
+            //        NewNum += cptChiffres[p].ToString();
+            //    }
+            //}
+            //return NewNum;
+        }
 
-                    return affiche;
-                }
-
-
-                public static string FormaterNom(string nom)
-                {
-                    return nom.ToUpper();
-                }
-
-                public static string FormaterPn(string pn)
-                {
-                    return pn.ToLower();
-                }
-
-                public static string FormaterTel(string telNumber)
-                {
-                    char[] tel = telNumber.ToCharArray();
-                    char[] chiffre = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-                    string num = "";
-
-                    for (int i = 0; i < tel.Length; i++)
-                    {
-                        for (int j = 0; j < chiffre.Length; j++)
-                        {
-                            if (tel[i] == chiffre[j])
-                            {
-                                num += tel[i].ToString(); break;
-                            }
-
-                        }
-                    }
-
-                    if (num.Length == 9) { num = num.Insert(0, "0"); }
-
-                    char[] cptChiffres = num.ToCharArray();
-                    string NewNum = "";
-                    if (cptChiffres.Length == 10)
-                    {
-                        for (int p = 0; p < cptChiffres.Length; p++)
-                        {
-                           // if (p == 2 || p == 4 || p == 6 || p == 8) { NewNum += "."; }
-                            NewNum += cptChiffres[p].ToString();
-                        }
-
-                    }
-
-                    return NewNum;
-
-                }
-
-
-                public static bool FormaterEmail(string mail)
-                {
-                    if (mail.Contains('@')&&(mail.Contains('.')))
-                    { return true; }
-                    else
-                    {
-                        return false;
-                    }
-
-                }
-
+        public static bool IsValidEmail(string mail)
+        {
+            return (mail.Contains('@')&&(mail.Contains('.'))) ? true : false;
+        }
     }
 }

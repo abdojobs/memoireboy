@@ -17,7 +17,12 @@ namespace MemoireBoy2013
             InitializeComponent();
         }
 
-        private void MBoyForm_Load(object sender, EventArgs e)
+        //TODO: Extraire les 2 méthodes ci-dessous dans une classe contrôleur à passer au constructeur
+
+        /// <summary>
+        /// Initialise l'IHM
+        /// </summary>
+        private void Initialize()
         {
             try
             {
@@ -35,30 +40,17 @@ namespace MemoireBoy2013
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Tente de loguer un utilisateur avec un login et un mot de passe
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        private void LoginTry(string userName, string password)
         {
-            Application.Exit();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            LoginTry();
-        }
-
-        private void MdpBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-                LoginTry();
-            }
-        }
-
-        private void LoginTry()
-        {
-            if (!string.IsNullOrEmpty(UserBox.Text) && !string.IsNullOrEmpty(MdpBox.Text))
+            if (!string.IsNullOrEmpty(userName) && !string.IsNullOrEmpty(password))
             {
                 BDGestionAccess2013.OUVRIRconnexionBD();
-                Users us = BDGestionAccess2013.REQUETEUR_USERS(UserBox.Text, MdpBox.Text);
+                Users us = BDGestionAccess2013.REQUETEUR_USERS(userName, password);
 
                 if (us != null)
                 {
@@ -70,9 +62,33 @@ namespace MemoireBoy2013
                 {
                     Application.Exit();
                 }
-
             }
         }
-    
+
+
+        private void MBoyForm_Load(object sender, EventArgs e)
+        {
+            Initialize();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // TODO : éviter de sortir directement de l'application depuis cette ihm
+            // NOTE : voir pour instancier et ouvrir cette IHM à partir de MBoyMain, plutôt que de les enchaîner (voir aussi méthode LoginTry à modifier)
+            Application.Exit();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            LoginTry(UserBox.Text, MdpBox.Text);
+        }
+
+        private void MdpBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                LoginTry(UserBox.Text, MdpBox.Text);
+            }
+        }    
     }
 }
