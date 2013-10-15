@@ -53,18 +53,18 @@ namespace MemoireBoy2013
 
                 if (this.SuperUser != null)
                 {
-                    if (this.SuperUser.droitsuser == 0) { req = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "' and archive=false" + " and destinatt=" + this.SuperUser.persUserId; }
-                    else { req = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "' and archive=false"; }
+                    if (this.SuperUser.droitsuser == 0) { req = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "' and archive=false" + " and destinatt=" + this.SuperUser.persUserId+" order by idt"; }
+                    else { req = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "' and archive=false" + " order by idt"; }
 
-                    if (this.SuperUser.droitsuser == 0) { req2 = "select * from taches where archive=false" + " and destinatt=" + this.SuperUser.persUserId; }
-                    else { req2 = "select * from taches where archive=false"; }
+                    if (this.SuperUser.droitsuser == 0) { req2 = "select * from taches where archive=false" + " and destinatt=" + this.SuperUser.persUserId + " order by idt"; }
+                    else { req2 = "select * from taches where archive=false" + " order by idt"; }
 
 
                 }
                 else
                 {
-                    req = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "' and archive=false";
-                    req2 = "select * from taches where archive=false";
+                    req = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "' and archive=false" + " order by idt";
+                    req2 = "select * from taches where archive=false" + " order by idt";
                 }
 
 
@@ -452,24 +452,24 @@ namespace MemoireBoy2013
             {
                 if (this.SuperUser != null)
                 {
-                    if (this.SuperUser.droitsuser == 0) { rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "'" + " and archive=false and destinatt=" + this.SuperUser.persUserId; }
-                    else { rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "'" + " and archive=false"; }
+                    if (this.SuperUser.droitsuser == 0) { rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "'" + " and archive=false and destinatt=" + this.SuperUser.persUserId + " order by idt"; }
+                    else { rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "'" + " and archive=false" + " order by idt"; }
                 }
                 else
                 {
-                    rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "'" + " and archive=false"; 
+                    rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "'" + " and archive=false" + " order by idt"; 
                 }
             }
             else
             {
                 if (this.SuperUser != null)
                 {
-                    if (this.SuperUser.droitsuser == 0) { rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "' and titret='" + complement + "'" + " and archive=false  and destinatt=" + this.SuperUser.persUserId; }
-                    else { rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "' and titret='" + complement + "'" + " and archive=false"; }
+                    if (this.SuperUser.droitsuser == 0) { rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "' and titret='" + complement + "'" + " and archive=false  and destinatt=" + this.SuperUser.persUserId + " order by idt"; }
+                    else { rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "' and titret='" + complement + "'" + " and archive=false" + " order by idt"; }
                 }
                 else
                 {
-                    rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "' and titret='" + complement + "'" + " and archive=false"; 
+                    rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "' and titret='" + complement + "'" + " and archive=false" + " order by idt"; 
                 }
             }
 
@@ -552,6 +552,8 @@ namespace MemoireBoy2013
 
         private void toolStripButton6_Click(object sender, EventArgs e)
         {
+
+    
             if ((this.listDesTaches.SelectedIndex != -1) && (this.listDesTaches.SelectedIndices.Count != 0))
             {
                 if (this.listDesTaches.SelectedIndex != 0)
@@ -576,6 +578,8 @@ namespace MemoireBoy2013
 
         private void toolStripButton7_Click(object sender, EventArgs e)
         {
+
+
             if ((this.listDesTaches.SelectedIndex != -1) && (this.listDesTaches.SelectedIndices.Count != 0))
             {
                 if (this.listDesTaches.SelectedIndex != this.listDesTaches.Items.Count-1)

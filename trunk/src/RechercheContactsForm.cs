@@ -462,10 +462,7 @@ namespace MemoireBoy2013
         {
             if (System.IO.File.Exists(this.textBoxCV.Text))
             {
-  /*              System.Diagnostics.ProcessStartInfo myInfo = new System.Diagnostics.ProcessStartInfo();
-                myInfo.FileName = "MonAppli.exe";
-                myInfo.WorkingDirectory = "MonRepertoire";
-                System.Diagnostics.Process.Start(myInfo); */
+
                 try
                 {
                     System.Diagnostics.Process.Start(this.textBoxCV.Text);
@@ -475,6 +472,20 @@ namespace MemoireBoy2013
                 {
                     MessageBox.Show(ex.Message);
                 }
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // ouvre le site dans le navigateur 
+                System.Diagnostics.Process.Start(this.textBoxSite.Text);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
