@@ -59,6 +59,7 @@
             this.textBoxAdr = new System.Windows.Forms.TextBox();
             this.textBox16 = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.cvButt = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.buttonImage = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -91,7 +92,7 @@
             this.CreerButt = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.supprButt = new System.Windows.Forms.Button();
-            this.cvButt = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -444,6 +445,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.button7);
             this.tabPage4.Controls.Add(this.cvButt);
             this.tabPage4.Controls.Add(this.button1);
             this.tabPage4.Controls.Add(this.buttonImage);
@@ -465,6 +467,16 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Complement d\'info";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // cvButt
+            // 
+            this.cvButt.Location = new System.Drawing.Point(437, 174);
+            this.cvButt.Name = "cvButt";
+            this.cvButt.Size = new System.Drawing.Size(40, 23);
+            this.cvButt.TabIndex = 200;
+            this.cvButt.Text = "cv";
+            this.cvButt.UseVisualStyleBackColor = true;
+            this.cvButt.Click += new System.EventHandler(this.cvButt_Click);
             // 
             // button1
             // 
@@ -530,7 +542,7 @@
             // 
             this.textBoxSite.Location = new System.Drawing.Point(182, 207);
             this.textBoxSite.Name = "textBoxSite";
-            this.textBoxSite.Size = new System.Drawing.Size(295, 20);
+            this.textBoxSite.Size = new System.Drawing.Size(249, 20);
             this.textBoxSite.TabIndex = 197;
             // 
             // textBox30
@@ -790,15 +802,15 @@
             this.supprButt.Text = "Supprimer";
             this.supprButt.Click += new System.EventHandler(this.supprButt_Click);
             // 
-            // cvButt
+            // button7
             // 
-            this.cvButt.Location = new System.Drawing.Point(437, 174);
-            this.cvButt.Name = "cvButt";
-            this.cvButt.Size = new System.Drawing.Size(40, 23);
-            this.cvButt.TabIndex = 200;
-            this.cvButt.Text = "cv";
-            this.cvButt.UseVisualStyleBackColor = true;
-            this.cvButt.Click += new System.EventHandler(this.cvButt_Click);
+            this.button7.Location = new System.Drawing.Point(437, 205);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(40, 23);
+            this.button7.TabIndex = 201;
+            this.button7.Text = "GO !";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // RechercheContactsForm
             // 
@@ -901,5 +913,6 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.ComboBox comboBoxSupprGRP;
         private System.Windows.Forms.Button cvButt;
+        private System.Windows.Forms.Button button7;
     }
 }
