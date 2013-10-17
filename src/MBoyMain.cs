@@ -245,7 +245,7 @@ namespace MemoireBoy2013
             bool bol=false;
 
             string urlDuFichier = @"http://www.memoireboy.fr/memoireboy/version.txt";
-            string urlEXE = @"http://www.memoireboy.fr/memoireboy/MemoireBoy2013.exe";
+
 
             try
             {
