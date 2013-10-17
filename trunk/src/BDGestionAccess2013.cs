@@ -1180,9 +1180,58 @@ namespace MemoireBoy2013
         }
 
 
+        public static void UPDATE_VERSIONMB(int VersionWEB)
+        {
+            try
+            {
+
+                string rqt = "Update version set numversion = '" + VersionWEB.ToString() +"'";
+
+                OleDbCommand cmdacc = new OleDbCommand(rqt, BDGestionAccess2013.connexion_access);
+
+                int res = cmdacc.ExecuteNonQuery();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " " + ex.StackTrace);
+            }
+        }
 
 
 
+        public static string LIT_OLDVERSIONMB()
+        {
+
+            string txt = "";
+            string requete = "select * from version where idversion=1";
+
+            try
+            {
+
+                OleDbCommand cmdaccess = new OleDbCommand(requete, BDGestionAccess2013.connexion_access);
+                OleDbDataReader lecteur = cmdaccess.ExecuteReader();
+
+
+                while (lecteur.Read())
+                {
+                    txt = lecteur.GetString(1);
+                }
+
+                lecteur.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "\r\n" + ex.InnerException);
+            }
+
+
+
+            return txt;
+
+        }
 
     }
 }

@@ -832,6 +832,7 @@
             // 
             this.menuItem33.Index = 0;
             this.menuItem33.Text = "et afficher la liste";
+            this.menuItem33.Click += new System.EventHandler(this.menuItem33_Click);
             // 
             // menuItem35
             // 
