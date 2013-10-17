@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoireBoy2013", "MemoireBoy2013.csproj", "{3A0D6089-D1B7-4CE6-A854-25FC0D8AD7B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MisesAJourMB", "..\MisesAJourMB\MisesAJourMB.csproj", "{65C23CB6-B851-4177-9C57-55F8FDBF2979}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +15,10 @@ Global
 		{3A0D6089-D1B7-4CE6-A854-25FC0D8AD7B9}.Debug|x86.Build.0 = Debug|x86
 		{3A0D6089-D1B7-4CE6-A854-25FC0D8AD7B9}.Release|x86.ActiveCfg = Release|x86
 		{3A0D6089-D1B7-4CE6-A854-25FC0D8AD7B9}.Release|x86.Build.0 = Release|x86
+		{65C23CB6-B851-4177-9C57-55F8FDBF2979}.Debug|x86.ActiveCfg = Debug|x86
+		{65C23CB6-B851-4177-9C57-55F8FDBF2979}.Debug|x86.Build.0 = Debug|x86
+		{65C23CB6-B851-4177-9C57-55F8FDBF2979}.Release|x86.ActiveCfg = Release|x86
+		{65C23CB6-B851-4177-9C57-55F8FDBF2979}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

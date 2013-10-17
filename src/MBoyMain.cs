@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using System.IO;
 using System.Security.Cryptography;
+using System.Net;
 
 namespace MemoireBoy2013
 {
@@ -239,6 +240,42 @@ namespace MemoireBoy2013
             }
         }
 
+        private bool VerifMAJMB()
+        {
+            bool bol=false;
+
+            string urlDuFichier = @"http://www.memoireboy.fr/memoireboy/version.txt";
+            string urlEXE = @"http://www.memoireboy.fr/memoireboy/MemoireBoy2013.exe";
+
+            try
+            {
+                WebClient wc = new WebClient();
+                System.IO.Stream st = wc.OpenRead(urlDuFichier);
+                System.IO.StreamReader sr = new System.IO.StreamReader(st);
+                string fichierEntier = sr.ReadToEnd().Trim();
+                wc.Dispose();
+                this.detailminibox.Text = "Connexion établie...";
+                bol = true;
+
+                int vs = Convert.ToInt32(fichierEntier);
+                int oldversion = Convert.ToInt32(BDGestionAccess2013.LIT_OLDVERSIONMB());
+
+                if (vs > oldversion)
+                {
+                    this.OuvrirFichier(Application.StartupPath+@"\"+"MisesAJourMB.exe");
+                    Application.Exit();
+                }
+                
+
+            }
+            catch
+            {
+                this.detailminibox.Text = "Connectez-vous à internet !";
+            }
+
+            return bol;
+        }
+
 
         private bool CONNEXIONisOK = false;
         private void MBoyMain_Load(object sender, EventArgs e)
@@ -255,6 +292,9 @@ namespace MemoireBoy2013
                 this.JOURNAL_box.Enabled = false;
 
                 this.MiseAJour();
+
+                // vérification des mises à jour internet appli
+                this.VerifMAJMB();
             }
             else
             {
@@ -839,6 +879,100 @@ namespace MemoireBoy2013
                 BDGestionAccess2013.TotalPathForBase = file;
                 BDGestionAccess2013.OUVRIRconnexionBD("memoireboy2013.mdb");
             }
+        }
+
+
+        private string fichieraouvrir = "";
+        private void liste_dans_fichier_txt()
+        {
+            string titretxt = @"";
+            string acces = System.IO.Path.DirectorySeparatorChar.ToString();
+            string st;
+
+            try
+            {
+                if ((this.comboTrie.Text != null) && (this.comboTrie.Text.Length > 0))
+                {
+                    st = this.comboTrie.Text.Replace(" ", "");
+                    st = st.Replace(@"|", "_");
+                    titretxt = st;
+                }
+
+                string chem = Application.StartupPath + acces + @"listes" + acces + titretxt + @".txt";
+                this.fichieraouvrir = chem;
+
+                System.IO.StreamWriter sw = System.IO.File.CreateText(chem);
+                string liste = "";
+
+                for (int i = 0; i < this.listDesTaches.Items.Count; i++)
+                {
+                    liste += i + " " + this.listDesTaches.Items[i] + "\r\n";
+                }
+
+                sw.Write(liste);
+                sw.Close();
+                sw.Dispose();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void OuvrirFichier()
+        {
+            try
+            {
+                // Instance de la classe Process
+                System.Diagnostics.Process proc = new System.Diagnostics.Process();
+                // Nom du fichier dont l'extension est connue du shell à ouvrir
+
+                proc.StartInfo.FileName = this.fichieraouvrir; //filename+ext;
+                // Démarrage du processus. 
+                // Notepad, si il est associé aux fichiers .txt,
+                // sera lancé et ouvrira le fichier monfichier.txt
+
+                proc.Start();
+                // On libère les ressources dont on a plus besoin.
+                proc.Close(); // Attention Close ne met pas fin au processus.
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void OuvrirFichier(string fichier)
+        {
+            try
+            {
+                // Instance de la classe Process
+                System.Diagnostics.Process proc = new System.Diagnostics.Process();
+                // Nom du fichier dont l'extension est connue du shell à ouvrir
+
+                proc.StartInfo.FileName = fichier; //filename+ext;
+                // Démarrage du processus. 
+                // Notepad, si il est associé aux fichiers .txt,
+                // sera lancé et ouvrira le fichier monfichier.txt
+
+                proc.Start();
+                // On libère les ressources dont on a plus besoin.
+                proc.Close(); // Attention Close ne met pas fin au processus.
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void menuItem33_Click(object sender, EventArgs e)
+        {
+            this.liste_dans_fichier_txt();
+            this.OuvrirFichier();
         }
 
 
