@@ -1,4 +1,4 @@
-﻿namespace MisesAJourMB
+﻿namespace MemoireBoy2013
 {
     partial class Form1
     {
