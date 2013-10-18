@@ -254,7 +254,7 @@ namespace MemoireBoy2013
                 System.IO.StreamReader sr = new System.IO.StreamReader(st);
                 string fichierEntier = sr.ReadToEnd().Trim();
                 wc.Dispose();
-                this.detailminibox.Text = "Connexion établie...";
+                this.detailminibox.Text = "\r\nConnexion établie...recherche des mises à jour...";
                 bol = true;
 
                 int vs = Convert.ToInt32(fichierEntier);
@@ -262,8 +262,12 @@ namespace MemoireBoy2013
 
                 if (vs > oldversion)
                 {
-                    this.OuvrirFichier(Application.StartupPath+@"\"+"MisesAJourMB.exe");
+                    this.OuvrirFichier(Application.StartupPath + @"\" + "MisesAJourMB.exe");
                     Application.Exit();
+                }
+                else
+                {
+                    this.detailminibox.Text = "";
                 }
                 
 
@@ -973,6 +977,11 @@ namespace MemoireBoy2013
         {
             this.liste_dans_fichier_txt();
             this.OuvrirFichier();
+        }
+
+        private void toolStripButton10_MouseLeave(object sender, EventArgs e)
+        {
+            this.detailminibox.Text = "";
         }
 
 
