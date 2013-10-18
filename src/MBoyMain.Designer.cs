@@ -502,6 +502,7 @@
             this.toolStripButton10.Name = "toolStripButton10";
             this.toolStripButton10.Size = new System.Drawing.Size(34, 34);
             this.toolStripButton10.Click += new System.EventHandler(this.toolStripButton10_Click);
+            this.toolStripButton10.MouseLeave += new System.EventHandler(this.toolStripButton10_MouseLeave);
             this.toolStripButton10.MouseHover += new System.EventHandler(this.toolStripButton10_MouseHover);
             // 
             // toolStripButton2

@@ -73,17 +73,26 @@ namespace MemoireBoy2013
                 string url_exe = "http://www.memoireboy.fr/memoireboy/memoireboy2013.exe";
                 string _path = Application.StartupPath + @"\"+"MemoireBoy2013.exe";
 
-                if (File.Exists(Application.StartupPath + @"\" + "MemoireBoy2013.exe"))
+                if (vs > oldversion)
                 {
-                    File.Delete(Application.StartupPath + @"\" + "MemoireBoy2013.exe");
+                    if (File.Exists(Application.StartupPath + @"\" + "MemoireBoy2013.exe"))
+                    {
+                        File.Delete(Application.StartupPath + @"\" + "MemoireBoy2013.exe");
+                    }
+
+                    _webClient.Headers.Add("User-Agent", "Mozilla");
+                    _webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(_webClient_DownloadFileCompleted);
+                    _webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(_webClient_DownloadProgressChanged);
+                    _webClient.DownloadFileAsync(new Uri(url_exe), _path);
+                    this.button1.Text = "téléchargement en cours...";
+                }
+                else
+                {
+                    this.MessageBoxMB.Text = " pas de mises à jour disponibles !";
                 }
 
                
-                _webClient.Headers.Add("User-Agent", "Mozilla");
-                _webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(_webClient_DownloadFileCompleted); 
-                _webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(_webClient_DownloadProgressChanged);
-                _webClient.DownloadFileAsync(new Uri(url_exe),_path);
-                this.button1.Text = "téléchargement en cours...";
+
 
                 BDGestionAccess2013.FERMERconnexionBD("MemoireBoy2013");
 
