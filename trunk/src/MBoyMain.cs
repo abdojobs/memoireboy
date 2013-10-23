@@ -226,16 +226,25 @@ namespace MemoireBoy2013
         {
             this.DateCourante = DateTime.Today;
             this.statusBar1.Text = "";
-           if(this.SuperUser!=null)
-            {
-                string ut = "UTILISATEUR : ";
-                if (this.SuperUser.droitsuser == 1) { ut = "ADMINISTRATEUR : "; }
-                PersonneClass p = BDGestionAccess2013.GET_PERSONNEBY(this.SuperUser.persUserId );
-                if (p != null)
-                {
-                    this.statusBar1.Text = ut + p.prenom + " " + p.nom;
-                }
 
+            try
+            {
+                if (this.SuperUser != null)
+                {
+                    string ut = "UTILISATEUR : ";
+                    if (this.SuperUser.droitsuser == 1) { ut = "ADMINISTRATEUR : "; }
+                    PersonneClass p = BDGestionAccess2013.GET_PERSONNEBY(this.SuperUser.persUserId);
+                    if (p != null)
+                    {
+                        this.statusBar1.Text = ut + p.prenom + " " + p.nom;
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
 
             }
         }
@@ -902,7 +911,7 @@ namespace MemoireBoy2013
                     titretxt = st;
                 }
 
-                string chem = Application.StartupPath + acces + @"listes" + acces + titretxt + @".txt";
+                string chem = Application.StartupPath + acces + @"listes" + acces + titretxt + "_" + DateTime.Now.ToShortDateString().Replace("/",".") + @".txt";
                 this.fichieraouvrir = chem;
 
                 System.IO.StreamWriter sw = System.IO.File.CreateText(chem);
@@ -940,7 +949,7 @@ namespace MemoireBoy2013
                     titretxt = st;
                 }
 
-                string chem = Application.StartupPath + acces + @"listes" + acces + titretxt + @".txt";
+                string chem = Application.StartupPath + acces + @"listes" + acces + titretxt + "_" + DateTime.Now.ToShortDateString().Replace("/",".")+@".txt";
                 this.fichieraouvrir = chem;
 
                 System.IO.StreamWriter sw = System.IO.File.CreateText(chem);
@@ -1032,6 +1041,20 @@ namespace MemoireBoy2013
 
         }
 
+        private void OuvrirDossier(string chemin_dossier)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("explorer.exe", @chemin_dossier);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
         private void menuItem33_Click(object sender, EventArgs e)
         {
             this.liste_dans_fichier_txt();
@@ -1047,6 +1070,16 @@ namespace MemoireBoy2013
         {
             this.liste_dans_fichier_txt_par_themes();
             this.OuvrirFichier();
+        }
+
+        private void menuItem49_Click(object sender, EventArgs e)
+        {
+            this.OuvrirDossier(@".\listes");
+        }
+
+        private void menuItem8_Click(object sender, EventArgs e)
+        {
+            this.liste_dans_fichier_txt_par_themes();
         }
 
 

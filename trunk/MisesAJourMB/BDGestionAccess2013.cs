@@ -958,6 +958,9 @@ namespace MemoireBoy2013
         }
 
 
+
+
+
         public static void SUPPRIME_PERSONNE(PersonneClass pers)
         {
             try
