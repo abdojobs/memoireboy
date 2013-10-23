@@ -418,7 +418,7 @@ namespace MemoireBoy2013
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + "\r\n" + ex.InnerException);
+                MessageBox.Show(ex.Message + "\r\n" + ex.Source);
             }
 
 
@@ -954,6 +954,32 @@ namespace MemoireBoy2013
 
 
             return u;
+
+        }
+
+
+        public static bool USERS_EXIST(int pers_user_id)
+        {
+
+            string requete = "select count(*) from users where persuserid=" + pers_user_id;
+
+            try
+            {
+
+                OleDbCommand cmdaccess = new OleDbCommand(requete, BDGestionAccess2013.connexion_access);
+                int _res = (int) cmdaccess.ExecuteScalar();
+
+                if (_res > 0) { return true; }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "\r\n" + ex.InnerException);
+            }
+
+
+
+            return false;
 
         }
 

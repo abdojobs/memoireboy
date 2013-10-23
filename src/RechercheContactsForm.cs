@@ -320,11 +320,31 @@ namespace MemoireBoy2013
 
         private void supprButt_Click(object sender, EventArgs e)
         {
-            if (this.personneAmodifier != null)
+
+            try
             {
-                BDGestionAccess2013.SUPPRIME_PERSONNE(this.personneAmodifier);
-                this.InitialiserLesChamps();
-                this.RechargerContacts();
+                if (this.personneAmodifier != null)
+                {
+                    bool lob = BDGestionAccess2013.USERS_EXIST(this.personneAmodifier.idPers);
+
+                    if (!lob)
+                    {
+                        BDGestionAccess2013.SUPPRIME_PERSONNE(this.personneAmodifier);
+
+                    }
+                    else
+                    {
+                        this.InfoLab.Text = " la personne est un utilisateur : suppression impossible";
+                    }
+
+                    this.InitialiserLesChamps();
+                    this.RechargerContacts();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
