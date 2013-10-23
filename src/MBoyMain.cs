@@ -925,6 +925,65 @@ namespace MemoireBoy2013
             }
         }
 
+        private void liste_dans_fichier_txt_par_themes()
+        {
+            string titretxt = @"";
+            string acces = System.IO.Path.DirectorySeparatorChar.ToString();
+            string st;
+
+            try
+            {
+                if ((this.comboTrie.Text != null) && (this.comboTrie.Text.Length > 0))
+                {
+                    st = this.comboTrie.Text.Replace(" ", "");
+                    st = st.Replace(@"|", "_");
+                    titretxt = st;
+                }
+
+                string chem = Application.StartupPath + acces + @"listes" + acces + titretxt + @".txt";
+                this.fichieraouvrir = chem;
+
+                System.IO.StreamWriter sw = System.IO.File.CreateText(chem);
+                string liste = "";
+
+                ttab.Sort();
+
+                List<string> tmp_titre = new List<string>();
+
+                bool bol=false; // false = il n'y est pas
+                string saut = "";
+
+                for (int i = 0; i < this.ttab.Count; i++)
+                {
+
+                    string titre = saut + "----------------------------------\r\n" + ttab[i].Titre + "\r\n----------------------------------\r\n";
+                    bol = false;
+
+                    for (int o = 0; o < tmp_titre.Count; o++)
+                    {
+                        if (titre.Contains(tmp_titre[o])) { bol = true; }
+                    }
+
+
+                    if (!bol) { liste += titre; tmp_titre.Add(titre);  saut = "\r\n";  } 
+
+                    liste += i + " " + this.ttab[i].Description + "\r\n";
+                }
+
+
+                sw.Write(liste);
+                sw.Close();
+                sw.Dispose();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message+"\r\n"+ex.Source);
+            }
+        }
+
+
         private void OuvrirFichier()
         {
             try
@@ -982,6 +1041,12 @@ namespace MemoireBoy2013
         private void toolStripButton10_MouseLeave(object sender, EventArgs e)
         {
             this.detailminibox.Text = "";
+        }
+
+        private void menuItem5_Click(object sender, EventArgs e)
+        {
+            this.liste_dans_fichier_txt_par_themes();
+            this.OuvrirFichier();
         }
 
 

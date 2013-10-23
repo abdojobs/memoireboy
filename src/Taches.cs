@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MemoireBoy2013
 {
-    public class Taches
+    public class Taches : IComparable
     {
 
         public Taches() { }
@@ -126,10 +126,19 @@ namespace MemoireBoy2013
 
 
 		#endregion
-		
 
 
 
 
+
+
+            public int CompareTo(object obj)
+            {
+                Taches t = (Taches)obj;
+                int result = this.titre.CompareTo(t.titre);
+                if (result == 0)
+                    result = this.titre.CompareTo(t.titre);
+                return result;
+            }
     }
 }
