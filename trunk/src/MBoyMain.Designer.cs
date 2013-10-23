@@ -117,6 +117,9 @@
             this.mainMenuList = new System.Windows.Forms.MainMenu(this.components);
             this.comboTrie = new System.Windows.Forms.ComboBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.menuItem4 = new System.Windows.Forms.MenuItem();
+            this.menuItem5 = new System.Windows.Forms.MenuItem();
+            this.menuItem8 = new System.Windows.Forms.MenuItem();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.datesgroupBox.SuspendLayout();
@@ -753,12 +756,12 @@
             // 
             // menuItem49
             // 
-            this.menuItem49.Index = 3;
+            this.menuItem49.Index = 4;
             this.menuItem49.Text = "Accéder au Dossier des listes";
             // 
             // menuItem50
             // 
-            this.menuItem50.Index = 2;
+            this.menuItem50.Index = 3;
             this.menuItem50.Text = "-";
             // 
             // menuItem10
@@ -854,6 +857,7 @@
             this.menuItem24.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem25,
             this.menuItem35,
+            this.menuItem4,
             this.menuItem50,
             this.menuItem49});
             this.menuItem24.Text = "Impressions";
@@ -898,6 +902,25 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // menuItem4
+            // 
+            this.menuItem4.Index = 2;
+            this.menuItem4.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem5,
+            this.menuItem8});
+            this.menuItem4.Text = "Envoyer cette liste dans un fichier .txt par thèmes";
+            // 
+            // menuItem5
+            // 
+            this.menuItem5.Index = 0;
+            this.menuItem5.Text = "et afficher la liste";
+            this.menuItem5.Click += new System.EventHandler(this.menuItem5_Click);
+            // 
+            // menuItem8
+            // 
+            this.menuItem8.Index = 1;
+            this.menuItem8.Text = "sans afficher la liste";
             // 
             // MBoyMain
             // 
@@ -1034,6 +1057,9 @@
         private System.Windows.Forms.MenuItem menuItem2;
         private System.Windows.Forms.MenuItem menuItem3;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.MenuItem menuItem4;
+        private System.Windows.Forms.MenuItem menuItem5;
+        private System.Windows.Forms.MenuItem menuItem8;
 
     }
 }
