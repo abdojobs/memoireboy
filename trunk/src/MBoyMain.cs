@@ -283,7 +283,7 @@ namespace MemoireBoy2013
             }
             catch
             {
-                this.detailminibox.Text = "Connectez-vous à internet !";
+                this.detailminibox.Text = "\r\nConnectez-vous à internet !";
             }
 
             return bol;

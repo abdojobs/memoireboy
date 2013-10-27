@@ -314,7 +314,7 @@
             // statusBar1
             // 
             this.statusBar1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statusBar1.Location = new System.Drawing.Point(0, 544);
+            this.statusBar1.Location = new System.Drawing.Point(0, 542);
             this.statusBar1.MaximumSize = new System.Drawing.Size(814, 20);
             this.statusBar1.MinimumSize = new System.Drawing.Size(814, 20);
             this.statusBar1.Name = "statusBar1";
@@ -921,7 +921,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 564);
+            this.ClientSize = new System.Drawing.Size(804, 562);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.datesgroupBox);
             this.Controls.Add(this.groupBox7);
