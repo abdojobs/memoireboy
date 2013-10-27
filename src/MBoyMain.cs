@@ -189,6 +189,18 @@ namespace MemoireBoy2013
             }
         }
 
+        private List<string> MessagesPerm = new List<string>();
+        private void chargerMessagesPermanents()
+        {
+            this.MessagesPerm.Clear();
+            this.MessagesPerm = BDGestionAccess2013.LIRE_MESSAGES_PERMANENTS();
+            this.MaxMess = this.MessagesPerm.Count-1;
+            if(this.cptMess<this.MaxMess)
+            {
+                this.messagesaleabox.Text = this.MessagesPerm[this.cptMess];
+            }
+        }
+
         private void MiseAJour()
         {
             // ########## tjrs dans cet ordre ##############
@@ -197,6 +209,8 @@ namespace MemoireBoy2013
             // #############################################
 
             this.MiseAJourDuJournal();
+            this.chargerMessagesPermanents();
+
 
         }
 
@@ -302,6 +316,7 @@ namespace MemoireBoy2013
             {
                 this.MBoyMain_Init();
                 this.VerifierBaseJournal2013();
+                this.VerifierBaseMESSAGESPERM2013();
                 this.JOURNAL_box.Enabled = false;
 
                 this.MiseAJour();
@@ -318,7 +333,17 @@ namespace MemoireBoy2013
 
         }
 
+        private void VerifierBaseMESSAGESPERM2013()
+        {
+            bool ok = BDGestionAccess2013.TABLE_EXIST("messperm");
 
+            if (!ok) // je crée la table messperm V2013 BETA VERSION
+            {
+                BDGestionAccess2013.CREATE_TABLE("CREATE TABLE messperm ([idmess] AUTOINCREMENT NOT NULL PRIMARY KEY , [mess] MEMO NULL)");
+            }
+
+
+        }
 
         private void VerifierBaseJournal2013()
         {
@@ -1080,6 +1105,88 @@ namespace MemoireBoy2013
         private void menuItem8_Click(object sender, EventArgs e)
         {
             this.liste_dans_fichier_txt_par_themes();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (this.messagesaleabox.Text != "")
+            {
+                BDGestionAccess2013.CREA_MESSAGE_PERMANENT(this.messagesaleabox.Text);
+            }
+            else
+            {
+                this.detailminibox.Text = "\r\nSaisir un texte dans les rappels permanents !";
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.messagesaleabox.Text = "";
+            this.messagesaleabox.Focus();
+        }
+
+        private int cptMess = 0;
+        private int MaxMess = 0;
+        private void button8_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cptMess < MaxMess)
+                {
+                    this.cptMess++;
+                    this.messagesaleabox.Text = this.MessagesPerm[this.cptMess];
+                }
+                else
+                {
+                    this.cptMess = 0;
+                    this.messagesaleabox.Text = this.MessagesPerm[this.cptMess];
+                }
+
+                this.MiseAJour();
+            }
+            catch (Exception ex)
+            {
+                this.cptMess = 0;
+                this.messagesaleabox.Text = this.MessagesPerm[this.cptMess];
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cptMess > 0)
+                {
+                    this.cptMess--;
+                    this.messagesaleabox.Text = this.MessagesPerm[this.cptMess];
+                }
+                else
+                {
+                    this.cptMess = this.MaxMess;
+                    this.messagesaleabox.Text = this.MessagesPerm[this.cptMess];
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (this.messagesaleabox.Text != "")
+            {
+                BDGestionAccess2013.SUPPRIME_MESSAGE_PERMANENT(this.messagesaleabox.Text);
+                this.messagesaleabox.Text = "";
+                this.detailminibox.Text = "\r\nMESSAGE SUPPRIME !";
+                this.MiseAJour();
+            }
+            else
+            {
+                this.detailminibox.Text = "Choisir un message à supprimer !";
+            }
         }
 
 

@@ -1259,5 +1259,92 @@ namespace MemoireBoy2013
 
         }
 
+        public static void CREA_MESSAGE_PERMANENT(string message)
+        {
+            try
+            {
+
+                // -------------  creation d'une tache avec ID
+
+
+                string ins = "Insert into messperm (mess) values ('" + message + "')";
+
+                OleDbCommand cmdacc = new OleDbCommand(ins, BDGestionAccess2013.connexion_access);
+
+                int res = cmdacc.ExecuteNonQuery();
+
+                // -------------------------------------------------------------
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " " + ex.StackTrace);
+            }
+        }
+
+        public static void SUPPRIME_MESSAGE_PERMANENT(string message)
+        {
+            try
+            {
+
+                // -------------  creation d'une tache avec ID
+
+
+                string ins = "delete from messperm where mess= ('" + message + "')";
+
+                OleDbCommand cmdacc = new OleDbCommand(ins, BDGestionAccess2013.connexion_access);
+
+                int res = cmdacc.ExecuteNonQuery();
+
+                // -------------------------------------------------------------
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " " + ex.StackTrace);
+            }
+        }
+
+
+        public static List<string> LIRE_MESSAGES_PERMANENTS()
+        {
+
+            List<string> lecture = new List<string>();
+
+            try
+            {
+
+
+
+                // -------------  
+
+
+                string lec = "select * from messperm";
+
+                OleDbCommand cmdacc = new OleDbCommand(lec, BDGestionAccess2013.connexion_access);
+
+                OleDbDataReader lecteur = cmdacc.ExecuteReader();
+
+
+                while (lecteur.Read())
+                {
+                    lecture.Add(lecteur.GetString(1));
+                }
+
+                lecteur.Close();
+
+                // -------------------------------------------------------------
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " " + ex.StackTrace);
+            }
+
+
+            return lecture;
+        }
+
+
     }
 }
