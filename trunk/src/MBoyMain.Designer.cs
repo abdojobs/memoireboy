@@ -79,7 +79,6 @@
             this.button7 = new System.Windows.Forms.Button();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.button6 = new System.Windows.Forms.Button();
-            this.sujetmessagebox = new System.Windows.Forms.TextBox();
             this.infopub = new System.Windows.Forms.GroupBox();
             this.messagesaleabox = new System.Windows.Forms.RichTextBox();
             this.messagesalea_timer = new System.Windows.Forms.Timer(this.components);
@@ -119,6 +118,8 @@
             this.mainMenuList = new System.Windows.Forms.MainMenu(this.components);
             this.comboTrie = new System.Windows.Forms.ComboBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.datesgroupBox.SuspendLayout();
@@ -523,21 +524,23 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(87, 122);
+            this.button8.Location = new System.Drawing.Point(158, 124);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(53, 23);
+            this.button8.Size = new System.Drawing.Size(63, 23);
             this.button8.TabIndex = 4;
-            this.button8.Text = "Suivant";
+            this.button8.Text = "Avance";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(146, 121);
+            this.button7.Location = new System.Drawing.Point(158, 100);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.Size = new System.Drawing.Size(63, 23);
             this.button7.TabIndex = 3;
             this.button7.Text = "Supprimer";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // toolStripButton1
             // 
@@ -553,34 +556,22 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(6, 122);
+            this.button6.Location = new System.Drawing.Point(6, 100);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.Size = new System.Drawing.Size(76, 23);
             this.button6.TabIndex = 2;
             this.button6.Text = "Créer";
             this.button6.UseVisualStyleBackColor = true;
-            // 
-            // sujetmessagebox
-            // 
-            this.sujetmessagebox.BackColor = System.Drawing.Color.Black;
-            this.sujetmessagebox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.sujetmessagebox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sujetmessagebox.ForeColor = System.Drawing.Color.White;
-            this.sujetmessagebox.Location = new System.Drawing.Point(6, 20);
-            this.sujetmessagebox.MaximumSize = new System.Drawing.Size(215, 15);
-            this.sujetmessagebox.MinimumSize = new System.Drawing.Size(215, 15);
-            this.sujetmessagebox.Name = "sujetmessagebox";
-            this.sujetmessagebox.Size = new System.Drawing.Size(215, 13);
-            this.sujetmessagebox.TabIndex = 1;
-            this.sujetmessagebox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // infopub
             // 
             this.infopub.BackColor = System.Drawing.Color.Silver;
+            this.infopub.Controls.Add(this.button4);
+            this.infopub.Controls.Add(this.button1);
             this.infopub.Controls.Add(this.button8);
             this.infopub.Controls.Add(this.button7);
             this.infopub.Controls.Add(this.button6);
-            this.infopub.Controls.Add(this.sujetmessagebox);
             this.infopub.Controls.Add(this.messagesaleabox);
             this.infopub.Location = new System.Drawing.Point(559, 356);
             this.infopub.Name = "infopub";
@@ -594,7 +585,7 @@
             this.messagesaleabox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.messagesaleabox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.messagesaleabox.Cursor = System.Windows.Forms.Cursors.Default;
-            this.messagesaleabox.Location = new System.Drawing.Point(6, 41);
+            this.messagesaleabox.Location = new System.Drawing.Point(6, 19);
             this.messagesaleabox.MaximumSize = new System.Drawing.Size(215, 114);
             this.messagesaleabox.MinimumSize = new System.Drawing.Size(215, 42);
             this.messagesaleabox.Name = "messagesaleabox";
@@ -917,6 +908,26 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 124);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(76, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Efface";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(88, 124);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(63, 23);
+            this.button4.TabIndex = 6;
+            this.button4.Text = "Recule";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click_1);
+            // 
             // MBoyMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -951,7 +962,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.statusDate)).EndInit();
             this.memoiregroupBox.ResumeLayout(false);
             this.infopub.ResumeLayout(false);
-            this.infopub.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.tabC_1.ResumeLayout(false);
@@ -983,7 +993,6 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.TextBox sujetmessagebox;
         private System.Windows.Forms.RichTextBox messagesaleabox;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
@@ -1054,6 +1063,8 @@
         private System.Windows.Forms.MenuItem menuItem4;
         private System.Windows.Forms.MenuItem menuItem5;
         private System.Windows.Forms.MenuItem menuItem8;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button4;
 
     }
 }
