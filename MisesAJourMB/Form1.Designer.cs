@@ -28,21 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.MessageBoxMB = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
-            // 
-            // MessageBoxMB
-            // 
-            this.MessageBoxMB.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.MessageBoxMB.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.MessageBoxMB.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MessageBoxMB.ForeColor = System.Drawing.SystemColors.Info;
-            this.MessageBoxMB.Location = new System.Drawing.Point(12, 12);
-            this.MessageBoxMB.Name = "MessageBoxMB";
-            this.MessageBoxMB.Size = new System.Drawing.Size(433, 15);
-            this.MessageBoxMB.TabIndex = 0;
             // 
             // button1
             // 
@@ -61,14 +50,28 @@
             this.progressBar1.Size = new System.Drawing.Size(433, 23);
             this.progressBar1.TabIndex = 2;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.Location = new System.Drawing.Point(12, 12);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(385, 20);
+            this.checkBox1.TabIndex = 3;
+            this.checkBox1.Text = "Redémarrer MemoireBoy à la fermeture de cette fenêtre";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(457, 128);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.MessageBoxMB);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MemoireBoy mises à jour";
@@ -81,9 +84,9 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox MessageBoxMB;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

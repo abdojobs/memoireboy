@@ -86,13 +86,6 @@ namespace MemoireBoy2013
                     _webClient.DownloadFileAsync(new Uri(url_exe), _path);
                     this.button1.Text = "téléchargement en cours...";
                 }
-                else
-                {
-                    this.MessageBoxMB.Text = " pas de mises à jour disponibles !";
-                }
-
-               
-
 
                 BDGestionAccess2013.FERMERconnexionBD("MemoireBoy2013");
 
@@ -109,7 +102,7 @@ namespace MemoireBoy2013
         {
             this.button1.Text = "téléchargement fini !";
 
-            this.demarrerMB(); _deja = true;
+            if (this.checkBox1.Checked) { this.demarrerMB(); _deja = true; }
 
             Application.Exit();
         }
@@ -156,12 +149,25 @@ namespace MemoireBoy2013
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            this.checkBox1.Checked = true;
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!_deja) { this.demarrerMB(); }
+            if (this.checkBox1.Checked) 
+            {
+                if (!_deja) { this.demarrerMB(); } 
+            }
+        }
+
+        private void MessageBoxMB_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
