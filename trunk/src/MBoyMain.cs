@@ -194,11 +194,18 @@ namespace MemoireBoy2013
         {
             this.MessagesPerm.Clear();
             this.MessagesPerm = BDGestionAccess2013.LIRE_MESSAGES_PERMANENTS();
-            this.MaxMess = this.MessagesPerm.Count-1;
-            if(this.cptMess<this.MaxMess)
+            this.MaxMess = this.MessagesPerm.Count;
+
+            this.afficherMessagesPerm();
+        }
+
+        private void afficherMessagesPerm()
+        {
+            if (this.cptMess < this.MaxMess)
             {
                 this.messagesaleabox.Text = this.MessagesPerm[this.cptMess];
             }
+
         }
 
         private void MiseAJour()
@@ -1112,6 +1119,7 @@ namespace MemoireBoy2013
             if (this.messagesaleabox.Text != "")
             {
                 BDGestionAccess2013.CREA_MESSAGE_PERMANENT(this.messagesaleabox.Text);
+                this.chargerMessagesPermanents();
             }
             else
             {
@@ -1134,20 +1142,16 @@ namespace MemoireBoy2013
                 if (cptMess < MaxMess)
                 {
                     this.cptMess++;
-                    this.messagesaleabox.Text = this.MessagesPerm[this.cptMess];
                 }
                 else
                 {
                     this.cptMess = 0;
-                    this.messagesaleabox.Text = this.MessagesPerm[this.cptMess];
                 }
 
-                this.MiseAJour();
+                this.afficherMessagesPerm();
             }
             catch (Exception ex)
             {
-                this.cptMess = 0;
-                this.messagesaleabox.Text = this.MessagesPerm[this.cptMess];
                 MessageBox.Show(ex.Message);
             }
 
@@ -1160,12 +1164,12 @@ namespace MemoireBoy2013
                 if (cptMess > 0)
                 {
                     this.cptMess--;
-                    this.messagesaleabox.Text = this.MessagesPerm[this.cptMess];
+                    this.afficherMessagesPerm();
                 }
                 else
                 {
                     this.cptMess = this.MaxMess;
-                    this.messagesaleabox.Text = this.MessagesPerm[this.cptMess];
+                    this.afficherMessagesPerm();
                 }
             }
             catch (Exception ex)
@@ -1181,11 +1185,11 @@ namespace MemoireBoy2013
                 BDGestionAccess2013.SUPPRIME_MESSAGE_PERMANENT(this.messagesaleabox.Text);
                 this.messagesaleabox.Text = "";
                 this.detailminibox.Text = "\r\nMESSAGE SUPPRIME !";
-                this.MiseAJour();
+                this.chargerMessagesPermanents();
             }
             else
             {
-                this.detailminibox.Text = "Choisir un message à supprimer !";
+                this.detailminibox.Text = "\r\nChoisir un message à supprimer !";
             }
         }
 
