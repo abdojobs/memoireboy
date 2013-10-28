@@ -80,6 +80,8 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.button6 = new System.Windows.Forms.Button();
             this.infopub = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.messagesaleabox = new System.Windows.Forms.RichTextBox();
             this.messagesalea_timer = new System.Windows.Forms.Timer(this.components);
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -118,8 +120,6 @@
             this.mainMenuList = new System.Windows.Forms.MainMenu(this.components);
             this.comboTrie = new System.Windows.Forms.ComboBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.datesgroupBox.SuspendLayout();
@@ -580,6 +580,26 @@
             this.infopub.TabStop = false;
             this.infopub.Text = "Rappels permanents";
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(88, 124);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(63, 23);
+            this.button4.TabIndex = 6;
+            this.button4.Text = "Recule";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click_1);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 124);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(76, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Efface";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // messagesaleabox
             // 
             this.messagesaleabox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -907,26 +927,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(6, 124);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(76, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Efface";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(88, 124);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(63, 23);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "Recule";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click_1);
             // 
             // MBoyMain
             // 
