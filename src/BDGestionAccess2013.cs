@@ -16,8 +16,8 @@ namespace MemoireBoy2013
         #region "Champs"
 
         private static string chaine_connexion = "";
-        private static string baseDeDonnees = "";
-        private static string dataSourcePath = "";
+        //private static string baseDeDonnees = "";
+        //private static string dataSourcePath = "";
         public static string TotalPathForBase = "";
 
         // Objets de connexion à la base de données

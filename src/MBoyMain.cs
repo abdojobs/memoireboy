@@ -11,6 +11,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Net;
 
+
 namespace MemoireBoy2013
 {
     public partial class MBoyMain : Form
@@ -297,7 +298,7 @@ namespace MemoireBoy2013
                 }
                 else
                 {
-                    this.detailminibox.Text = "";
+                    this.detailminibox.Text = "\r\nAUCUNE MISE A JOUR DISPONIBLE !";
                 }
                 
 
@@ -314,7 +315,7 @@ namespace MemoireBoy2013
         private bool CONNEXIONisOK = false;
         private void MBoyMain_Load(object sender, EventArgs e)
         {
-
+            
             this.ChargementDesImages();
 
             this.CONNEXIONisOK = this.EtablirConnexion();
@@ -596,8 +597,9 @@ namespace MemoireBoy2013
                 {
                     Taches SelectedTache = this.ttab[this.listDesTaches.SelectedIndices[i]];
                     BDGestionAccess2013.REPORT_UNE_DATE(SelectedTache, this.dateTimePicker1.Value);
-                    this.MiseAJour();
                 }
+
+                this.MiseAJour();
 
             }
             else
@@ -1191,6 +1193,16 @@ namespace MemoireBoy2013
             {
                 this.detailminibox.Text = "\r\nChoisir un message à supprimer !";
             }
+        }
+
+        private void menuItem12_Click(object sender, EventArgs e)
+        {
+           bool bol = this.VerifMAJMB();
+        }
+
+        private void menuItem18_Click(object sender, EventArgs e)
+        {
+           //  System.IO.File.Copy(@".\bd\memoireboy2013.mdb",);
         }
 
 
