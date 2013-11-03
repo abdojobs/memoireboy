@@ -11,10 +11,8 @@ C:\Users\autogene\Desktop\_projet2013\MisesAJourMB\obj\x86\Debug\Memoireboy2013.
 C:\Users\autogene\Desktop\_projet2013\MisesAJourMB\obj\x86\Debug\MemoireBoy2013.Form1.resources
 C:\Users\autogene\Desktop\MemoireBoy2013(svn)\trunk\src\bin\Debug\MisesAJourMB.exe
 C:\Users\autogene\Desktop\MemoireBoy2013(svn)\trunk\src\bin\Debug\MisesAJourMB.pdb
-C:\Users\autogene\Desktop\MemoireBoy2013(svn)\trunk\MisesAJourMB\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\autogene\Desktop\MemoireBoy2013(svn)\trunk\MisesAJourMB\obj\x86\Debug\MemoireBoy2013.Form1.resources
 C:\Users\autogene\Desktop\MemoireBoy2013(svn)\trunk\MisesAJourMB\obj\x86\Debug\Memoireboy2013.Properties.Resources.resources
-C:\Users\autogene\Desktop\MemoireBoy2013(svn)\trunk\MisesAJourMB\obj\x86\Debug\GenerateResource.read.1.tlog
-C:\Users\autogene\Desktop\MemoireBoy2013(svn)\trunk\MisesAJourMB\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\Users\autogene\Desktop\MemoireBoy2013(svn)\trunk\MisesAJourMB\obj\x86\Debug\MisesAJourMB.exe
 C:\Users\autogene\Desktop\MemoireBoy2013(svn)\trunk\MisesAJourMB\obj\x86\Debug\MisesAJourMB.pdb
+C:\Users\autogene\Desktop\MemoireBoy2013(svn)\trunk\MisesAJourMB\obj\x86\Debug\MisesAJourMB.csproj.GenerateResource.Cache

@@ -46,9 +46,9 @@
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.menuItemAide = new System.Windows.Forms.MenuItem();
             this.menuItem53 = new System.Windows.Forms.MenuItem();
-            this.menuItem47 = new System.Windows.Forms.MenuItem();
             this.menuItem46 = new System.Windows.Forms.MenuItem();
             this.menuItem45 = new System.Windows.Forms.MenuItem();
+            this.menuItem13 = new System.Windows.Forms.MenuItem();
             this.menuItemApropos = new System.Windows.Forms.MenuItem();
             this.menuItem23 = new System.Windows.Forms.MenuItem();
             this.supprimerRdvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -270,11 +270,6 @@
             this.menuItem53.Text = "A Propos De MemoireBoy";
             this.menuItem53.Click += new System.EventHandler(this.menuItem53_Click);
             // 
-            // menuItem47
-            // 
-            this.menuItem47.Index = 1;
-            this.menuItem47.Text = "-";
-            // 
             // menuItem46
             // 
             this.menuItem46.Index = 0;
@@ -285,9 +280,14 @@
             this.menuItem45.Index = 3;
             this.menuItem45.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem46,
-            this.menuItem47,
+            this.menuItem13,
             this.menuItem53});
             this.menuItem45.Text = "?";
+            // 
+            // menuItem13
+            // 
+            this.menuItem13.Index = 1;
+            this.menuItem13.Text = "-";
             // 
             // menuItemApropos
             // 
@@ -817,6 +817,7 @@
             // 
             this.menuItem18.Index = 0;
             this.menuItem18.Text = "Exporter la Base";
+            this.menuItem18.Click += new System.EventHandler(this.menuItem18_Click);
             // 
             // menuItem17
             // 
@@ -1029,7 +1030,6 @@
         private System.Windows.Forms.MenuItem menuItem49;
         private System.Windows.Forms.MenuItem menuItem45;
         private System.Windows.Forms.MenuItem menuItem46;
-        private System.Windows.Forms.MenuItem menuItem47;
         private System.Windows.Forms.MenuItem menuItem53;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Drawing.Printing.PrintDocument printDocument1;
@@ -1065,6 +1065,7 @@
         private System.Windows.Forms.MenuItem menuItem8;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.MenuItem menuItem13;
 
     }
 }
