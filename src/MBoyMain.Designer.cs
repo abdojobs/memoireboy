@@ -367,6 +367,7 @@
             this.memoiregroupBox.TabIndex = 34;
             this.memoiregroupBox.TabStop = false;
             this.memoiregroupBox.Text = "Messages et détails de taches";
+            this.memoiregroupBox.Enter += new System.EventHandler(this.memoiregroupBox_Enter);
             // 
             // detailminibox
             // 
