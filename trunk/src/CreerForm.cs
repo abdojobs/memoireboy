@@ -125,7 +125,7 @@ namespace MemoireBoy2013
 
         private void ChargerLesTitres()
         {
-            string req = "select distinct(titret) from taches";
+            string req = "select distinct(titret) from taches where archive=false";
 
             List<string> tabstr = BDGestionAccess2013.REQUETEUR_TITRES_TACHES(req);
 
@@ -305,6 +305,7 @@ namespace MemoireBoy2013
 
         private void button2_Click(object sender, EventArgs e)
         {
+            this.InfoLabCrea.Text =  "";
             this.descripBox.Text = "";
 
         }

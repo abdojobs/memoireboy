@@ -44,60 +44,67 @@ namespace MemoireBoy2013
         private List<Taches> ttab2; // pour bolder les dates
         private void ChargerLesTaches()
         {
-            try
-            {
-                this.monthCalendar1.SetDate(this.DateCourante);
-                this.listDesTaches.Items.Clear();
 
+            string archive = " and archive=false";
+            string archive2 = " archive=false ";
 
-                string req = "";
-                string req2 = "";
-
-                if (this.SuperUser != null)
+            if (this.archiveMontre) { archive = " and archive=true "; archive2 = " archive=true "; }
+            
+                try
                 {
-                    if (this.SuperUser.droitsuser == 0) { req = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "' and archive=false" + " and destinatt=" + this.SuperUser.persUserId+" order by idt"; }
-                    else { req = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "' and archive=false" + " order by idt"; }
+                    this.monthCalendar1.SetDate(this.DateCourante);
+                    this.listDesTaches.Items.Clear();
 
-                    if (this.SuperUser.droitsuser == 0) { req2 = "select * from taches where archive=false" + " and destinatt=" + this.SuperUser.persUserId + " order by idt"; }
-                    else { req2 = "select * from taches where archive=false" + " order by idt"; }
 
+                    string req = "";
+                    string req2 = "";
+
+                    if (this.SuperUser != null)
+                    {
+                        if (this.SuperUser.droitsuser == 0) { req = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "'" + archive + " and destinatt=" + this.SuperUser.persUserId + " order by idt"; }
+                        else { req = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "'" +archive + " order by idt"; }
+
+                        if (this.SuperUser.droitsuser == 0) { req2 = "select * from taches where "+ archive2 + " and destinatt=" + this.SuperUser.persUserId + " order by idt"; }
+                        else { req2 = "select * from taches where " + archive2 + " order by idt"; }
+
+
+                    }
+                    else
+                    {
+                        req = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "'" + archive + " order by idt";
+                        req2 = "select * from taches where " + archive2 + " order by idt";
+                    }
+
+
+                    ttab = BDGestionAccess2013.REQUETEUR_TACHES(req);
+                    foreach (Taches t in ttab)
+                    {
+                        this.listDesTaches.Items.Add(t.Description);
+                    }
+
+                    //###############################je bold les dates où il y a tache ##################################
+
+
+                    ttab2 = BDGestionAccess2013.REQUETEUR_TACHES(req2);
+                    dates = new DateTime[ttab2.Count];
+
+                    for (int i = 0; i < ttab2.Count; i++)
+                    {
+                        dates[i] = DateTime.Parse(ttab2[i].Datdeb);
+                    }
+
+
+
+                    this.monthCalendar1.BoldedDates = dates;
+
+                    // ###########################################################################################################
 
                 }
-                else
+                catch (Exception e)
                 {
-                    req = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "' and archive=false" + " order by idt";
-                    req2 = "select * from taches where archive=false" + " order by idt";
+                    MessageBox.Show(e.Message);
                 }
-
-
-                ttab = BDGestionAccess2013.REQUETEUR_TACHES(req);
-                foreach (Taches t in ttab)
-                {
-                    this.listDesTaches.Items.Add(t.Description);
-                }
-
-                //###############################je bold les dates où il y a tache ##################################
-
-
-                ttab2 = BDGestionAccess2013.REQUETEUR_TACHES(req2);
-                dates = new DateTime[ttab2.Count];
-
-                for (int i = 0; i < ttab2.Count; i++)
-                {
-                    dates[i] = DateTime.Parse(ttab2[i].Datdeb);
-                }
-
-
-
-                this.monthCalendar1.BoldedDates = dates;
-              
-                // ###########################################################################################################
-
-            }
-            catch(Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
+            
         }
 
 
@@ -135,6 +142,8 @@ namespace MemoireBoy2013
                 MessageBox.Show(e.Message);
             }
         }
+
+
 
         void ChargementDesImages()
         {
@@ -530,37 +539,41 @@ namespace MemoireBoy2013
             }
         }
 
+
+        private bool archiveMontre = false;
         private void comboTrie_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string rq ="";
-            string complement = this.comboTrie.SelectedItem.ToString();
-            if (complement == "TOUTES LES TACHES")
-            {
-                if (this.SuperUser != null)
+
+                string rq = "";
+                string complement = this.comboTrie.SelectedItem.ToString();
+                if (complement == "TOUTES LES TACHES")
                 {
-                    if (this.SuperUser.droitsuser == 0) { rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "'" + " and archive=false and destinatt=" + this.SuperUser.persUserId + " order by idt"; }
-                    else { rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "'" + " and archive=false" + " order by idt"; }
+                    if (this.SuperUser != null)
+                    {
+                        if (this.SuperUser.droitsuser == 0) { rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "'" + " and archive=false and destinatt=" + this.SuperUser.persUserId + " order by idt"; }
+                        else { rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "'" + " and archive=false" + " order by idt"; }
+                    }
+                    else
+                    {
+                        rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "'" + " and archive=false" + " order by idt";
+                    }
                 }
                 else
                 {
-                    rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "'" + " and archive=false" + " order by idt"; 
+                    if (this.SuperUser != null)
+                    {
+                        if (this.SuperUser.droitsuser == 0) { rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "' and titret='" + complement + "'" + " and archive=false  and destinatt=" + this.SuperUser.persUserId + " order by idt"; }
+                        else { rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "' and titret='" + complement + "'" + " and archive=false" + " order by idt"; }
+                    }
+                    else
+                    {
+                        rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "' and titret='" + complement + "'" + " and archive=false" + " order by idt";
+                    }
                 }
-            }
-            else
-            {
-                if (this.SuperUser != null)
-                {
-                    if (this.SuperUser.droitsuser == 0) { rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "' and titret='" + complement + "'" + " and archive=false  and destinatt=" + this.SuperUser.persUserId + " order by idt"; }
-                    else { rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "' and titret='" + complement + "'" + " and archive=false" + " order by idt"; }
-                }
-                else
-                {
-                    rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "' and titret='" + complement + "'" + " and archive=false" + " order by idt"; 
-                }
-            }
 
 
-            this.ChargerLesTaches(rq);
+                this.ChargerLesTaches(rq);
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -611,9 +624,11 @@ namespace MemoireBoy2013
 
         private void button9_Click(object sender, EventArgs e)
         {
-            string rq = "select * from taches where datdebt = '" + this.DateCourante.ToShortDateString() + "'" + " and archive=true";
+            this.archiveMontre = true;
+            string rq = "select * from taches where archive=true";
             this.ChargerLesTaches(rq);
             this.InfoLab.Text = "ARCHIVES";
+
         }
 
         private void MBoyMain_Activated(object sender, EventArgs e)
@@ -740,6 +755,7 @@ namespace MemoireBoy2013
         private void toolStripButton1_MouseHover(object sender, EventArgs e)
         {
             this.detailminibox.Text = "\r\nCreer Modifier Rechercher Supprimer un Contact ou une Personne";
+            this.InfoLab.Text = "CONTACTS";
         }
 
         private void toolStripButton11_Click(object sender, EventArgs e)
@@ -793,6 +809,7 @@ namespace MemoireBoy2013
         private void toolStripButton1_MouseLeave(object sender, EventArgs e)
         {
             this.detailminibox.Text = "";
+            this.InfoLab.Text = "MEMOIREBOY";
         }
 
         private void toolStripButton8_MouseHover(object sender, EventArgs e)
@@ -1203,6 +1220,11 @@ namespace MemoireBoy2013
         private void menuItem18_Click(object sender, EventArgs e)
         {
            //  System.IO.File.Copy(@".\bd\memoireboy2013.mdb",);
+        }
+
+        private void memoiregroupBox_Enter(object sender, EventArgs e)
+        {
+
         }
 
 

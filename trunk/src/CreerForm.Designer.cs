@@ -108,7 +108,11 @@
             // 
             // titreBox
             // 
+            this.titreBox.DropDownHeight = 100;
+            this.titreBox.IntegralHeight = false;
+            this.titreBox.ItemHeight = 13;
             this.titreBox.Location = new System.Drawing.Point(24, 45);
+            this.titreBox.MaxDropDownItems = 12;
             this.titreBox.Name = "titreBox";
             this.titreBox.Size = new System.Drawing.Size(256, 21);
             this.titreBox.TabIndex = 24;
@@ -316,7 +320,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(412, 436);
+            this.ClientSize = new System.Drawing.Size(412, 434);
             this.Controls.Add(this.InfoLabCrea);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.tabControl1);
